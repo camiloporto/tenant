@@ -6,3 +6,11 @@ jpa setup --database H2_IN_MEMORY --provider HIBERNATE
 hint
 exit
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-12-13 11:07:00
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-13 11:16:38
+entity jpa --class br.com.camiloporto.tenant.model.Usuario --activeRecord false --serializable --
+entity jpa --class br.com.camiloporto.tenant.model.Usuario --activeRecord false --serializable
+hint
+field string --fieldName email --notNull --unique 
+field string --fieldName password --notNull 
+repository jpa --interface ~.repository.UserRepository --entity ~.model.Usuario
+service --interface ~.service.UserService --class ~.service.UserServiceImpl --entity ~.model.Usuario
