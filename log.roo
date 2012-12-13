@@ -19,3 +19,24 @@ service --interface ~.service.UserService --class ~.service.UserServiceImpl --en
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-13 11:45:19
 exit
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-12-13 11:45:36
+// Spring Roo 1.2.0.RELEASE [rev 39eb957] log opened at 2012-12-13 13:13:07
+exit
+// Spring Roo 1.2.0.RELEASE [rev 39eb957] log closed at 2012-12-13 13:13:34
+// Spring Roo 1.2.0.RELEASE [rev 39eb957] log opened at 2012-12-13 13:17:23
+exit
+// Spring Roo 1.2.0.RELEASE [rev 39eb957] log closed at 2012-12-13 13:20:56
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-13 13:21:17
+help
+hint
+hint web mvc
+web mvc setup
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-12-13 13:51:05
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-13 14:19:37
+hint
+hint web mvc
+hint
+help
+web mvc scaffold --backingType ~.model.Usuario --class ~.web.UserController 
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-12-13 14:51:40
