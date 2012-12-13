@@ -15,3 +15,7 @@ field string --fieldName password --notNull
 repository jpa --interface ~.repository.UserRepository --entity ~.model.Usuario
 service --interface ~.service.UserService --class ~.service.UserServiceImpl --entity ~.model.Usuario
 
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-13 11:42:16
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-12-13 11:45:19
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-12-13 11:45:36
