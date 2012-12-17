@@ -19,4 +19,6 @@ public class Usuario {
 
     @NotNull
     private String password;
+    
+    private boolean contaConfirmada = false;
 }

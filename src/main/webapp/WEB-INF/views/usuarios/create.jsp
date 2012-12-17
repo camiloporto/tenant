@@ -46,13 +46,10 @@
 				contentType: "application/x-www-form-urlencoded", 
 				dataType: "text", 
 				success: function(data, textStatus, jqXHR) { 
-					$("#status").empty();
-					$("#status").html("<span>Sucesso</span>");
-					$("#status").fadeIn("slow", function(){});
-					$("#status").fadeOut("slow", function(){});
+					window.location.replace("./realestates");
 				}, 
 				error: function(jqXHR, textStatus, errorThrown) { 
-					alert(jqXHR); 
+					console.log(textStatus); 
 				}
 			});
 			return false;

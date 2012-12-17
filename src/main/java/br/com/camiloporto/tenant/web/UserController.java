@@ -16,10 +16,15 @@ public class UserController {
 		return "usuarios/create";
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
-	public @ResponseBody Usuario createUser(Usuario u) {
-		System.out.println("UserController.createUser() " + u);
-		return u;
+	@RequestMapping(method = RequestMethod.POST)
+	public @ResponseBody String createUser(Usuario u) {
+		return u.toString();
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(Usuario u) {
+		
+		return "redirect:/realestates";
 	}
 	
 }

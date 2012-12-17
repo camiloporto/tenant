@@ -23,4 +23,12 @@ privileged aspect Usuario_Roo_JavaBean {
         this.password = password;
     }
     
+    public boolean Usuario.isContaConfirmada() {
+        return this.contaConfirmada;
+    }
+    
+    public void Usuario.setContaConfirmada(boolean contaConfirmada) {
+        this.contaConfirmada = contaConfirmada;
+    }
+    
 }
