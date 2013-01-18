@@ -12,9 +12,9 @@
 <link href="styles/bootstrap.min.css" rel="stylesheet" media="screen">
 <style type="text/css">
 body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
 
 .imovel-local {
 	margin: 0;
@@ -27,9 +27,12 @@ body {
 		<div class="navbar-inner">
 			<div class="container">
 				<a class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span>
-				</a> <a class="brand" href="#">Lorem Ips</a>
+					data-target=".nav-collapse"> 
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a> 
+				<a class="brand" href="#">Lorem Ips</a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						<li class="active"><a href="#">Home</a></li>
