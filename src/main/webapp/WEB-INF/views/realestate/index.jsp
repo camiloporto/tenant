@@ -5,30 +5,63 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Tenant.com</title>
-	<!-- Bootstrap -->
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="styles/bootstrap-responsive.css" rel="stylesheet">
-	
-	<link href="styles/bootstrap.min.css" rel="stylesheet" media="screen">
+<!-- Bootstrap -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="styles/bootstrap-responsive.css" rel="stylesheet">
+<link href="styles/bootstrap.min.css" rel="stylesheet" media="screen">
+<style type="text/css">
+body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+
+.imovel-local {
+	margin: 0;
+}
+</style>
 </head>
 <body>
-	<div class="navbar navbar-fixed-top" style="background: green">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="brand" href="#">O Morador</a>
-          <ul class="nav">
-              <li><a href="#">Novo Imovel</a></li>
-          </ul>
-          
-          <form class="navbar-form pull-right search-form">
-              <input type="text" class="search-query">
-              <button type="submit" class="btn">Search</button>
-          </form>
-        </div>
-      </div>
-    </div>
+	
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse"
+					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span>
+				</a> <a class="brand" href="#">Lorem Ips</a>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="#about">Novo</a></li>
+						<li><a href="#contact">Contact</a></li>
+					</ul>
+					<form class="navbar-search pull-right">
+						<input class="search-query" type="text" placeholder="Search"></input>
+						<button type="submit" class="btn">Search</button>
+					</form>
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="media well">
+			<a class="pull-left" href="#"> <img class="media-object" src="#"
+				width="96" height="96"></img>
+			</a>
+			<div class="media-body">
+				<h4 class="media-heading">Apartamento</h4>
+				<h5 class="imovel-local">Consectetur Adipisicing, Natal-RN</h5>
+				<span class="imovel-condominio">Sed ut perspiciatis unde</span><br />
+				<span class="avaliacao-qtde"><small>(47)</small></span> <span
+					class="avaliacao">XXXXX</span><br />
+			</div>
+		</div>
+		<div class="footer">Lorem Ips (C)</div>
+	</div>
+	<!-- container -->
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
