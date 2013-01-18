@@ -51,8 +51,20 @@ body {
 				width="96" height="96"></img>
 			</a>
 			<div class="media-body">
-				<h4 class="media-heading">Apartamento</h4>
-				<h5 class="imovel-local">Consectetur Adipisicing, Natal-RN</h5>
+				<h3 class="media-heading">Apartamento</h3>
+				<h4 class="imovel-local">Consectetur Adipisicing, Natal-RN</h4>
+				<span class="imovel-condominio">Sed ut perspiciatis unde</span><br />
+				<span class="avaliacao-qtde"><small>(47)</small></span> <span
+					class="avaliacao">XXXXX</span><br />
+			</div>
+		</div>
+		<div class="media well">
+			<a class="pull-left" href="#"> <img class="media-object" src="#"
+				width="96" height="96"></img>
+			</a>
+			<div class="media-body">
+				<h3 class="media-heading">Apartamento</h3>
+				<h4 class="imovel-local">Consectetur Adipisicing, Natal-RN</h4>
 				<span class="imovel-condominio">Sed ut perspiciatis unde</span><br />
 				<span class="avaliacao-qtde"><small>(47)</small></span> <span
 					class="avaliacao">XXXXX</span><br />
