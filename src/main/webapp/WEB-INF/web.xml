@@ -62,6 +62,12 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     
+    <!-- Defines Spring Active Profile -->
+    <context-param>
+    	<param-name>spring.profiles.active</param-name>
+    	<param-value>heroku</param-value>
+    </context-param>
+    
     <!-- Handles Spring requests -->
     <servlet>
         <servlet-name>Tenant</servlet-name>
