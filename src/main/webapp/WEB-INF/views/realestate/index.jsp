@@ -50,8 +50,8 @@ body {
 	</div>
 	<div class="container">
 		<div class="media well">
-			<a class="pull-left" href="#"> <img class="media-object" src="#"
-				width="96" height="96"></img>
+			<a class="pull-left" href="realestates?id=1"> 
+				<img class="media-object" src="#" width="96" height="96"></img>
 			</a>
 			<div class="media-body">
 				<h3 class="media-heading">Apartamento</h3>
