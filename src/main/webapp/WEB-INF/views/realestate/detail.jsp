@@ -140,7 +140,7 @@ body {
 				</div>
 			</div>
 		</div>
-		<div class="footer">Lorem Ips (C)</div>
+		<footer class="footer" style="margin : 2em 0;">© Lorem Ips</footer>
 	</div>
 	<!-- container -->
 	<script src="http://code.jquery.com/jquery-latest.js"></script>

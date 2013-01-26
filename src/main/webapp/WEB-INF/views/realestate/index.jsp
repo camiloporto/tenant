@@ -73,7 +73,7 @@ body {
 					class="avaliacao">XXXXX</span><br />
 			</div>
 		</div>
-		<div class="footer">Lorem Ips (C)</div>
+		<footer class="footer">© Lorem Ips</footer>
 	</div>
 	<!-- container -->
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
