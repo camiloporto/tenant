@@ -54,3 +54,10 @@ field string --fieldName complemento
 repository jpa --interface ~.repository.ImovelRepository --entity ~.model.Imovel
 exit
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-25 17:18:40
+// Spring Roo 1.2.0.RELEASE [rev 39eb957] log opened at 2013-01-26 18:10:07
+exit
+// Spring Roo 1.2.0.RELEASE [rev 39eb957] log closed at 2013-01-26 18:11:29
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-26 18:36:32
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-27 14:20:09
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-27 16:58:27
+field date --class ~.model.Imovel --fieldName ultimaAtualizacao --type java.util.Date

@@ -4,6 +4,7 @@
 package br.com.camiloporto.tenant.model;
 
 import br.com.camiloporto.tenant.model.Imovel;
+import java.util.Date;
 
 privileged aspect Imovel_Roo_JavaBean {
     
@@ -53,6 +54,14 @@ privileged aspect Imovel_Roo_JavaBean {
     
     public void Imovel.setComplemento(String complemento) {
         this.complemento = complemento;
+    }
+    
+    public Date Imovel.getUltimaAtualizacao() {
+        return this.ultimaAtualizacao;
+    }
+    
+    public void Imovel.setUltimaAtualizacao(Date ultimaAtualizacao) {
+        this.ultimaAtualizacao = ultimaAtualizacao;
     }
     
 }
