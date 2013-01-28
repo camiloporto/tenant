@@ -61,3 +61,6 @@ exit
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-27 14:20:09
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-27 16:58:27
 field date --class ~.model.Imovel --fieldName ultimaAtualizacao --type java.util.Date
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-28 16:40:43
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-28 16:45:40
