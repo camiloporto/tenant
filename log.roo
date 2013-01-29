@@ -71,3 +71,6 @@ service --interface ~.service.ImovelService --entity ~.model.Imovel --class ~.se
 service --interface ~.service.ImovelService --entity ~.model.Imovel --class ~.ice.ImovelServiceImpl
 exit
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-28 16:59:54
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-29 12:05:55
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-29 14:13:00
