@@ -1,11 +1,14 @@
 package br.com.camiloporto.tenant.wui;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -35,8 +38,11 @@ public class ImovelHomePageTest extends AbstractTestNGSpringContextTests {
 	}
 	
 	@Test
-	public void f() {
+	public void deveListarImoveisCadastrados() {
 		WebDriver driver = new FirefoxDriver();
-		driver.get("http://www.google.com");
+		driver.get("http://localhost:8080/Tenant/realestates");
+		
+		WebElement el = driver.findElement(By.id("divListaImoveis"));
+		Assert.assertTrue(el.getText().contains("Tereza Campos"));
 	}
 }
