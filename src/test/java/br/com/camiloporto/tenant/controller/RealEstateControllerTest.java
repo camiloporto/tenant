@@ -6,11 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.server.MockMvc;
-import org.springframework.test.web.server.MvcResult;
-import org.springframework.test.web.server.request.MockMvcRequestBuilders;
-import org.springframework.test.web.server.result.MockMvcResultMatchers;
-import org.springframework.test.web.server.setup.MockMvcBuilders;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 import org.testng.Assert;
@@ -34,11 +33,11 @@ public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 	@Autowired 
 	private WebApplicationContext wac;
 	
-	private MockMvc mockMvc;
+	private org.springframework.test.web.servlet.MockMvc mockMvc;
 	
 	@BeforeClass
 	public void setUpMockMvc() {
-		mockMvc = MockMvcBuilders.webApplicationContextSetup(wac).build();
+		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
 		Imovel i = new ImovelBuilder()
 			.doTipo("Apartamento")
 			.naCidade("Natal")
