@@ -99,4 +99,16 @@ public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 		final String expectedRua = "Tereza Campos";
 		Assert.assertEquals(imovel.getRua(), expectedRua, "nome da rua do imovel diferente do esperado");
 	}
+	
+	@Test
+	public void deveRetornarNullQuandoNaoEncontrarImovelPeloIdInformado() throws Exception {
+		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/realestates/9999"))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.forwardedUrl("/WEB-INF/views/realestate/detail.jsp"))
+				.andReturn();
+		ModelAndView mav = result.getModelAndView();
+		Imovel imovel = (Imovel) mav.getModelMap().get("imovel");
+		Assert.assertNull(imovel, "imovel deveria ser nulo");
+		
+	}
 }
