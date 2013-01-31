@@ -61,9 +61,9 @@ body {
 	</div>
 	<div class="container">
 	<div id="imovel-info">
-		<h3>Apartamento</h3>
-		<h4 class="imovel-local">Consectetur Adipisicing, Natal-RN</h4>
-		<span class="imovel-condominio">Sed ut perspiciatis unde</span><br />
+		<h3>${imovel.tipo}</h3>
+		<h4 class="imovel-local">${imovel.bairro}, ${imovel.cidade}-${imovel.estado}</h4>
+		<span class="imovel-condominio">${imovel.rua}</span><br />
 		<span class="avaliacao-qtde"><small>(47)</small></span> 
 		<img src="images/thumbup.gif" class="thumbup"></img>
 		<!-- 
