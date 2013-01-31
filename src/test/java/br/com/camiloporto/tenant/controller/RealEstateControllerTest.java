@@ -3,9 +3,11 @@ package br.com.camiloporto.tenant.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -25,6 +27,7 @@ import br.com.camiloporto.tenant.repository.ImovelRepository;
 		"/META-INF/spring/applicationContext-jpa.xml",
 		"/META-INF/spring/webmvc-config.xml"})
 @WebAppConfiguration
+@ActiveProfiles("unit-test")
 public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 	
 	@Autowired
@@ -33,7 +36,7 @@ public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 	@Autowired 
 	private WebApplicationContext wac;
 	
-	private org.springframework.test.web.servlet.MockMvc mockMvc;
+	private MockMvc mockMvc;
 	
 	@BeforeClass
 	public void setUpMockMvc() {

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
@@ -15,6 +16,7 @@ import org.testng.annotations.Test;
 import br.com.camiloporto.tenant.model.Imovel;
 
 @ContextConfiguration(locations = {"/META-INF/spring/applicationContext.xml", "/META-INF/spring/applicationContext-jpa.xml"})
+@ActiveProfiles("unit-test")
 public class ImovelRepositoryTest extends AbstractTestNGSpringContextTests {
 	
 	@Autowired

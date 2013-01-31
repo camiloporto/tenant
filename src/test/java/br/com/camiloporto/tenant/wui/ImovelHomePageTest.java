@@ -20,6 +20,7 @@ import br.com.camiloporto.tenant.service.ImovelService;
 		"/META-INF/spring/applicationContext.xml",
 		"/META-INF/spring/applicationContext-jpa.xml"})
 @ActiveProfiles("integration-test")
+@Test(enabled = false)
 public class ImovelHomePageTest extends AbstractTestNGSpringContextTests {
 	
 	@Autowired

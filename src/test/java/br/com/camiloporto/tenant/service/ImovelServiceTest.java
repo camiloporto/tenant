@@ -3,6 +3,7 @@ package br.com.camiloporto.tenant.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
@@ -14,6 +15,7 @@ import br.com.camiloporto.tenant.repository.ImovelBuilder;
 import br.com.camiloporto.tenant.repository.ImovelRepository;
 
 @ContextConfiguration(locations = {"/META-INF/spring/applicationContext.xml", "/META-INF/spring/applicationContext-jpa.xml"})
+@ActiveProfiles("unit-test")
 public class ImovelServiceTest extends AbstractTestNGSpringContextTests {
 
 	@Autowired
