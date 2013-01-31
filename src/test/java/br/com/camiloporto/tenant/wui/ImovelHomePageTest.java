@@ -20,7 +20,6 @@ import br.com.camiloporto.tenant.service.ImovelService;
 		"/META-INF/spring/applicationContext.xml",
 		"/META-INF/spring/applicationContext-jpa.xml"})
 @ActiveProfiles("integration-test")
-@Test(enabled = false)
 public class ImovelHomePageTest extends AbstractTestNGSpringContextTests {
 	
 	@Autowired
@@ -38,7 +37,7 @@ public class ImovelHomePageTest extends AbstractTestNGSpringContextTests {
 			imovelService.saveImovel(i);
 	}
 	
-	@Test
+	@Test(groups={"selenium"})
 	public void deveListarImoveisCadastrados() {
 		WebDriver driver = new FirefoxDriver();
 		driver.get("http://localhost:8080/Tenant/realestates");
