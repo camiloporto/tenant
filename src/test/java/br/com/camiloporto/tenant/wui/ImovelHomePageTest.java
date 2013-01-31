@@ -12,8 +12,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import br.com.camiloporto.tenant.builder.ImovelBuilder;
 import br.com.camiloporto.tenant.model.Imovel;
-import br.com.camiloporto.tenant.repository.ImovelBuilder;
 import br.com.camiloporto.tenant.service.ImovelService;
 
 @ContextConfiguration(locations = { 

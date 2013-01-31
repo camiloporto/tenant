@@ -10,8 +10,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import br.com.camiloporto.tenant.builder.ImovelBuilder;
 import br.com.camiloporto.tenant.model.Imovel;
-import br.com.camiloporto.tenant.repository.ImovelBuilder;
 import br.com.camiloporto.tenant.repository.ImovelRepository;
 
 @ContextConfiguration(locations = {"/META-INF/spring/applicationContext.xml", "/META-INF/spring/applicationContext-jpa.xml"})
@@ -57,4 +57,29 @@ public class ImovelServiceTest extends AbstractTestNGSpringContextTests {
 				"ordem dos imoveis diferente do esperado");
 
 	}
+	
+	@Test
+	public void deveRecuperarUmImovelPeloId() {
+		Imovel i = new ImovelBuilder()
+			.doTipo("Apartamento")
+			.noEstado("RN")
+			.naCidade("Natal")
+			.noBairro("Lagoa Nova")
+			.naRua("Tereza Campos")
+			.create();
+		
+		service.saveImovel(i);
+		Long id = i.getId();
+		
+		Imovel saved = service.findImovel(id);
+		Assert.assertNotNull(saved, "deveria recuperar imovel salvo");
+		Assert.assertEquals(saved.getRua(), "Tereza Campos", "rua do imovel diferente do esperado");
+	}
+	
+	@Test
+	public void aoProcurarPorImovelInexistente_DeveRetornarNull() {
+		Imovel inexistente = service.findImovel(999L);
+		Assert.assertNull(inexistente, "imovel deveria ser nulo");
+	}
+	
 }

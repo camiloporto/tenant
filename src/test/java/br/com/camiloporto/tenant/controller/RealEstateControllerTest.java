@@ -16,10 +16,11 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import br.com.camiloporto.tenant.builder.ImovelBuilder;
 import br.com.camiloporto.tenant.model.Imovel;
-import br.com.camiloporto.tenant.repository.ImovelBuilder;
 import br.com.camiloporto.tenant.repository.ImovelRepository;
 
 @ContextConfiguration(locations = { 
@@ -41,6 +42,16 @@ public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 	@BeforeClass
 	public void setUpMockMvc() {
 		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+		
+	}
+	
+	@BeforeMethod
+	public void cleanAllData() {
+		imovelRepository.deleteAll();
+	}
+	
+	@Test
+	public void deveRetornarViewPrincipalDeImoveisComListaDeImoveisCadastrados() throws Exception {
 		Imovel i = new ImovelBuilder()
 			.doTipo("Apartamento")
 			.naCidade("Natal")
@@ -48,11 +59,8 @@ public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 			.noBairro("Lagoa Nova")
 			.naRua("Tereza Campos")
 			.create();
-			imovelRepository.save(i);
-	}
-	
-	@Test
-	public void deveRetornarViewPrincipalDeImoveis() throws Exception {
+		imovelRepository.save(i);
+		
 		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/realestates"))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(MockMvcResultMatchers.model().attributeExists("imoveis"))
@@ -65,7 +73,42 @@ public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 		final String expectedRua = "Tereza Campos";
 		Assert.assertEquals(imoveis.size(), expectedSize, "numero de imoveis diferente do esperado");
 		
-		Imovel i = imoveis.get(0);
-		Assert.assertEquals(i.getRua(), expectedRua, "nome da rua do imovel diferente do esperado");
+		Imovel saved = imoveis.get(0);
+		Assert.assertEquals(saved.getRua(), expectedRua, "nome da rua do imovel diferente do esperado");
+	}
+	
+	@Test
+	public void deveRetornarImovelPeloIdInformado() throws Exception {
+		Imovel i = new ImovelBuilder()
+			.doTipo("Apartamento")
+			.naCidade("Natal")
+			.noEstado("RN")
+			.noBairro("Lagoa Nova")
+			.naRua("Tereza Campos")
+			.create();
+		imovelRepository.save(i);
+		
+		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/realestates/" + i.getId()))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.model().attributeExists("imovel"))
+				.andExpect(MockMvcResultMatchers.forwardedUrl("/WEB-INF/views/realestate/detail.jsp"))
+				.andReturn();
+		ModelAndView mav = result.getModelAndView();
+		Imovel imovel = (Imovel) mav.getModelMap().get("imovel");
+		
+		final String expectedRua = "Tereza Campos";
+		Assert.assertEquals(imovel.getRua(), expectedRua, "nome da rua do imovel diferente do esperado");
+	}
+	
+	@Test
+	public void deveRetornarNullQuandoNaoEncontrarImovelPeloIdInformado() throws Exception {
+		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/realestates/9999"))
+				.andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.forwardedUrl("/WEB-INF/views/realestate/detail.jsp"))
+				.andReturn();
+		ModelAndView mav = result.getModelAndView();
+		Imovel imovel = (Imovel) mav.getModelMap().get("imovel");
+		Assert.assertNull(imovel, "imovel deveria ser nulo");
+		
 	}
 }
