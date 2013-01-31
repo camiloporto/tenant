@@ -1,4 +1,4 @@
-package br.com.camiloporto.tenant.repository;
+package br.com.camiloporto.tenant.builder;
 
 import br.com.camiloporto.tenant.model.Imovel;
 
