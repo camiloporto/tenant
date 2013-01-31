@@ -7,7 +7,7 @@
         then be used within application context files in the form of
         ${propertyKey}.
     -->
-    <context:property-placeholder location="classpath*:META-INF/spring/*.properties"/>
+<!--     <context:property-placeholder location="classpath*:META-INF/spring/database.properties" /> -->
     <!--
         Turn on AspectJ @Configurable support. As a result, any time you
         instantiate an object, Spring will attempt to perform dependency
@@ -63,8 +63,25 @@
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
     <tx:annotation-driven mode="aspectj" transaction-manager="transactionManager"/>
-    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">
-        <property name="persistenceUnitName" value="persistenceUnit"/>
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
+<!--     <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory"> -->
+<!--         <property name="persistenceUnitName" value="persistenceUnit"/> -->
+<!--         <property name="dataSource" ref="dataSource"/> -->
+<!--     </bean> -->
+    
+    <!-- Beans para usar H2 In Memory --> 
+    <beans profile="unit-test">
+	    <context:property-placeholder location="classpath*:META-INF/spring/database-h2.properties"/>
+	    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">
+	        <property name="persistenceUnitName" value="persistenceUnit"/>
+	        <property name="dataSource" ref="dataSource"/>
+	        <property name="persistenceXmlLocation" value="classpath*:META-INF/persistence-h2.xml" />
+	    </bean>
+	</beans>
+	<beans profile="integration-test">
+	    <context:property-placeholder location="classpath*:META-INF/spring/database.properties"/>
+	    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">
+	        <property name="persistenceUnitName" value="persistenceUnit"/>
+	        <property name="dataSource" ref="dataSource"/>
+	    </bean>
+	</beans>
 </beans>
