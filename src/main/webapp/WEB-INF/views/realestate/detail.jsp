@@ -30,6 +30,17 @@ body {
 	height: 35px;
 	display: inline;
 }
+#lnkUploadMedia {
+	font-size: larger;
+}
+#uploadDiv {
+    width : 80%;
+    background : lightgrey;
+    border : dashed 1px black;
+    margin : 1em 0;
+    padding : 1em;
+    display : none;
+}
 </style>
 </head>
 <body>
@@ -97,6 +108,12 @@ body {
 					data-slide="prev">&lsaquo;</a> <a class="carousel-control right"
 					href="#myCarousel" data-slide="next">&rsaquo;</a>
 			</div>
+			<div>
+				<a href="#" id="lnkUploadMedia">Tenho uma foto deste imóvel e gostaria de compartilhar</a>
+				<div id="uploadDiv">
+                	<span>No momento o envio de fotos não está disponível. Você pode nos enviar sua foto através do email <a href="#">camiloporto@gmail.com</a></span>
+            	</div>
+			</div>
 		</div>
 		<div id="imovel-comments">
 			<h3>Comentarios</h3>
@@ -148,6 +165,9 @@ body {
 	<script type="text/javascript">
 		$('#myCarousel').carousel({
 			interval: 3000
+		});
+		$('#lnkEnvioFoto').click(function(evt){
+		    $('#uploadDiv').toggle('slow');
 		});
 	</script>
 </body>
