@@ -5,12 +5,13 @@
   <head>
     <title>Opiniao do Morador</title>
 	
-    <!-- Bootstrap -->
+    <!-- Bootstrap 
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="styles/bootstrap-responsive.css" rel="stylesheet">
 	
     <link href="styles/bootstrap.min.css" rel="stylesheet" media="screen">
+    -->
   </head>
   <style type="text/css">
   	body {
@@ -22,6 +23,7 @@
 	}
   </style>
   <body>
+  <!-- 
   <div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
@@ -43,9 +45,11 @@
 					</form>
 				</div>
 				<!--/.nav-collapse -->
+				<!-- 
 			</div>
 		</div>
 	</div>
+	 -->
 	<div class="container">
 		<div class="row">
 	        <div class="span7">
@@ -139,11 +143,11 @@
 		    </ul>
 		</div>
 		
-   <footer class="footer">© Lorem Ips</footer>
+<!--    <footer class="footer">© Lorem Ips</footer> -->
 </div> <!-- container -->
   
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+<!--     <script src="http://code.jquery.com/jquery-latest.js"></script> -->
+<!--     <script src="js/bootstrap.min.js"></script> -->
     <script type="text/javascript">
 		$("#searchForm").submit(function() {
 			var form = $(this);
