@@ -26,7 +26,7 @@
     <!-- Beans for Heroku Database Configuration -->
     <beans profile="heroku">
     	<bean class="java.net.URI" id="dbUrl">
-		    <constructor-arg value="${DATABASE_URL}"/>
+		    <constructor-arg value="postgres://camilo:porto@localhost:5432/tenant"/>
 		</bean>
     </beans>
 </beans>
