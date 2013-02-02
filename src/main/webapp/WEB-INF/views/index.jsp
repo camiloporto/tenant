@@ -34,7 +34,7 @@
 				<a class="brand" href="#">Lorem Ips</a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li><a href="#about">Novo</a></li>
+						<li><a href="#about" class="btn btn-primary btn-large">Novo</a></li>
 						<li><a href="#contact">Contact</a></li>
 					</ul>
 					<form id="searchForm" class="navbar-search pull-right" action="./usuarios/login" method="post">

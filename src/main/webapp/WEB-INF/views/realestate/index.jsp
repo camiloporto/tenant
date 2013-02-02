@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +37,7 @@ body {
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#about">Novo</a></li>
+						<li><a href="#about" class="btn btn-primary btn-large">Novo</a></li>
 						<li><a href="#contact">Contact</a></li>
 					</ul>
 					<form class="navbar-search pull-right">
@@ -48,10 +49,25 @@ body {
 			</div>
 		</div>
 	</div>
-	<div class="container">
+	<div class="container" id="divListaImoveis">
+		<c:forEach items="${imoveis}" var="imovel">
+			<div class="media well">
+				<a class="pull-left" href="realestates/${imovel.id}"> 
+					<img class="media-object" src="#" width="96" height="96"></img>
+				</a>
+				<div class="media-body">
+					<h3 class="media-heading">${imovel.tipo}</h3>
+					<h4 class="imovel-local">${imovel.rua}, ${imovel.cidade}-${imovel.estado}</h4>
+					<span class="imovel-condominio">${imovel.complemento}</span><br />
+					<span class="avaliacao-qtde"><small>(47)</small></span> <span
+						class="avaliacao">XXXXX</span><br />
+				</div>
+			</div>
+		</c:forEach>
+		<!-- 
 		<div class="media well">
-			<a class="pull-left" href="realestates?id=1"> 
-				<img class="media-object" src="#" width="96" height="96"></img>
+			<a class="pull-left" href="#"> <img class="media-object" src="#"
+				width="96" height="96"></img>
 			</a>
 			<div class="media-body">
 				<h3 class="media-heading">Apartamento</h3>
@@ -73,7 +89,8 @@ body {
 					class="avaliacao">XXXXX</span><br />
 			</div>
 		</div>
-		<footer class="footer">© Lorem Ips</footer>
+		 -->
+		<div class="footer">Lorem Ips (C)</div>
 	</div>
 	<!-- container -->
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
