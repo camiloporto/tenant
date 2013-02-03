@@ -11,12 +11,21 @@
 	<link href="styles/bootstrap.min.css" rel="stylesheet" media="screen" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Inquilinus.com</title>
+	<!-- Estilo da pagina principal -->
+	<style type="text/css">
+	  	body {
+			padding-top: 60px;
+			padding-bottom: 40px;
+		}
+		.imovel-local {
+			margin: 0;
+		}
+  </style>
 </head>
 <body>
+	
 	<tiles:insertAttribute name="header" ignore="true"/>
 	<tiles:insertAttribute name="body" ignore="true"/>
 	<tiles:insertAttribute name="footer" ignore="true"/>
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>

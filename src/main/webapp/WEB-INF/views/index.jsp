@@ -1,56 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Opiniao do Morador</title>
-	
-    <!-- Bootstrap 
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="styles/bootstrap-responsive.css" rel="stylesheet">
-	
-    <link href="styles/bootstrap.min.css" rel="stylesheet" media="screen">
-    -->
-  </head>
-  <style type="text/css">
-  	body {
-		padding-top: 60px;
-		padding-bottom: 40px;
-	}
-	.imovel-local {
-		margin: 0;
-	}
-  </style>
-  <body>
-  <!-- 
-  <div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-				<a class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse"> 
-					<span class="icon-bar"></span> 
-					<span class="icon-bar"></span> 
-					<span class="icon-bar"></span>
-				</a> 
-				<a class="brand" href="#">Lorem Ips</a>
-				<div class="nav-collapse collapse">
-					<ul class="nav">
-						<li><a href="#about" class="btn btn-primary btn-large">Novo</a></li>
-						<li><a href="#contact">Contact</a></li>
-					</ul>
-					<form id="searchForm" class="navbar-search pull-right" action="./usuarios/login" method="post">
-						<input class="search-query" type="text" placeholder="Search"></input>
-						<button type="submit" class="btn">Search</button>
-					</form>
-				</div>
-				<!--/.nav-collapse -->
-				<!-- 
-			</div>
-		</div>
-	</div>
-	 -->
-	<div class="container">
+	<div class="container" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:spring="http://www.springframework.org/tags" version="2.0">
 		<div class="row">
 	        <div class="span7">
 	            <div class="hero-unit">
@@ -143,13 +91,13 @@
 		    </ul>
 		</div>
 		
-<!--    <footer class="footer">© Lorem Ips</footer> -->
 </div> <!-- container -->
-  
-<!--     <script src="http://code.jquery.com/jquery-latest.js"></script> -->
-<!--     <script src="js/bootstrap.min.js"></script> -->
+  	
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript">
 		$("#searchForm").submit(function() {
+			alert("Opa");
 			var form = $(this);
 			var formData = $(this).serialize();
 			$.ajax({ 
@@ -161,5 +109,4 @@
 // 			return false;
 		});
 	</script>
-  </body>
-</html>
+  
