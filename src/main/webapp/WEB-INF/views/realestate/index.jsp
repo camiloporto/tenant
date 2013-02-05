@@ -37,7 +37,7 @@ body {
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#about">Novo</a></li>
+						<li><a href="#about" class="btn btn-primary btn-large">Novo</a></li>
 						<li><a href="#contact">Contact</a></li>
 					</ul>
 					<form class="navbar-search pull-right">

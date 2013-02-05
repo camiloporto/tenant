@@ -9,8 +9,8 @@
 <!-- Bootstrap -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="styles/bootstrap-responsive.css" rel="stylesheet">
-<link href="styles/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="/Tenant/styles/bootstrap-responsive.css" rel="stylesheet">
+<link href="/Tenant/styles/bootstrap.min.css" rel="stylesheet" media="screen">
 <style type="text/css">
 body {
 	padding-top: 60px;
@@ -19,6 +19,12 @@ body {
 
 .imovel-local {
 	margin: 0;
+}
+#imovel-comments {
+	margin: 3em 0;
+}
+#myCarousel {
+	margin: 5em 0;
 }
 .carousel img {
     width : 430px;
@@ -30,8 +36,8 @@ body {
 	height: 35px;
 	display: inline;
 }
-#lnkUploadMedia {
-	font-size: larger;
+#lnkEnvioFoto {
+    font-size : larger;
 }
 #uploadDiv {
     width : 80%;
@@ -54,16 +60,20 @@ body {
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a> 
-				<a class="brand" href="#">Lorem Ips</a>
+				<a class="brand" href="#" style="margin: 0 1em 0 0">Lorem Ips</a>
 				<div class="nav-collapse collapse">
+					<!-- 
 					<ul class="nav">
 						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#about">Novo</a></li>
+						<li><a href="#about" class="btn btn-primary btn-large">Novo</a></li>
 						<li><a href="#contact">Contact</a></li>
 					</ul>
+					 -->
+					 <a href="http://camiloporto.wufoo.com/forms/z7x3p3/" 
+					 	class="btn btn-primary" target="_blank">Cadastre um Novo Imóvel</a>
 					<form class="navbar-search pull-right">
-						<input class="search-query" type="text" placeholder="Search"></input>
-						<button type="submit" class="btn">Search</button>
+						<input class="search-query" type="text" placeholder="Pesquisa..."></input>
+						<button type="submit" class="btn">Procurar</button>
 					</form>
 				</div>
 				<!--/.nav-collapse -->
@@ -76,7 +86,7 @@ body {
 			<h4 class="imovel-local">${imovel.bairro}, ${imovel.cidade}-${imovel.estado}</h4>
 			<span class="imovel-condominio">${imovel.rua}</span><br />
 			<span class="avaliacao-qtde"><small>(47)</small></span> 
-			<img src="images/thumbup.gif" class="thumbup"></img>
+			<img src="/Tenant/images/thumbup.gif" class="thumbup"></img>
 			<!-- 
 		        <div>Apartamento em Lagoa Nova, Natal-RN</div>
 		        <div>Residencial LifeStyle</div>
@@ -161,12 +171,12 @@ body {
 	</div>
 	<!-- container -->
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<script src="/Tenant/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		$('#myCarousel').carousel({
 			interval: 3000
 		});
-		$('#lnkEnvioFoto').click(function(evt){
+		$('#lnkUploadMedia').click(function(evt){
 		    $('#uploadDiv').toggle('slow');
 		});
 	</script>
