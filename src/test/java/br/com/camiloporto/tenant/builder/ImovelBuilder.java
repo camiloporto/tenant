@@ -39,4 +39,9 @@ public class ImovelBuilder {
 		return imovel;
 	}
 
+	public ImovelBuilder comComplemento(String complemento) {
+		imovel.setComplemento(complemento);
+		return this;
+	}
+
 }

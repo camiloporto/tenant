@@ -76,3 +76,11 @@ exit
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-29 14:13:00
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-29 14:23:48
 // Spring Roo 1.2.0.RELEASE [rev 39eb957] log opened at 2013-01-31 08:20:55
+// Spring Roo 1.2.0.RELEASE [rev 39eb957] log opened at 2013-02-05 14:33:58
+exit
+// Spring Roo 1.2.0.RELEASE [rev 39eb957] log closed at 2013-02-05 15:07:05
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-08 10:48:56
+help
+json add --class ~.model.Imovel
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-08 10:55:10
