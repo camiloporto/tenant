@@ -6,15 +6,25 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.elasticsearch.node.Node;
 import org.elasticsearch.node.NodeBuilder;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.FactoryBean;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.core.io.Resource;
 
-public class ElasticSearchFactoryBean {
+public class ElasticSearchNodeFactoryBean implements FactoryBean<Node>, InitializingBean, DisposableBean {
 
+	private final Log logger = LogFactory.getLog(getClass());
+	
+	private Node theNode;
+	
 	private Map<String, String> settings;
+	
 	private Resource configLocation;
 	
-	private final Log logger = LogFactory.getLog(getClass());
-
+	public void setConfigLocation(Resource configLocation) {
+		this.configLocation = configLocation;
+	}
+	
 	public Node node() {
 		NodeBuilder nodeBuilder = NodeBuilder.nodeBuilder();
 		loadSettings(nodeBuilder);
@@ -41,9 +51,29 @@ public class ElasticSearchFactoryBean {
 		
 	}
 
-	public void setSettings(Resource configLocation) {
-		this.configLocation = configLocation;
-		
+	@Override
+	public Node getObject() throws Exception {
+		return theNode;
+	}
+
+	@Override
+	public Class<?> getObjectType() {
+		return Node.class;
+	}
+
+	@Override
+	public boolean isSingleton() {
+		return true;
+	}
+
+	@Override
+	public void destroy() throws Exception {
+		theNode.close();
+	}
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		theNode = node();
 	}
 
 }
