@@ -8,6 +8,12 @@ import org.elasticsearch.common.settings.ImmutableSettings;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.node.Node;
 import org.elasticsearch.node.NodeBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -15,22 +21,19 @@ import org.testng.annotations.Test;
 
 import br.com.camiloporto.tenant.builder.ImovelBuilder;
 import br.com.camiloporto.tenant.model.Imovel;
+import br.com.camiloporto.tenant.search.ElasticSearchConfigTest.SpringConfig;
 
 //@ContextConfiguration(locations = {"/META-INF/spring/applicationContext.xml", "/META-INF/spring/applicationContext-jpa.xml"})
 //@ActiveProfiles("unit-test")
-public class ElasticSearchConfigTest /*extends AbstractTestNGSpringContextTests */{
+@ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes=SpringConfig.class)
+public class ElasticSearchConfigTest extends AbstractTestNGSpringContextTests {
 	
-	private Settings defaultSettings = ImmutableSettings
-            .settingsBuilder()
-            .put("cluster.name", "test-cluster-" + NetworkUtils.getLocalAddress().getHostName())
-            .build();
-	private Node node;
+	
+	@Autowired
+	private Client client;
 	
 	@BeforeClass
 	public void startNode() {
-		node = NodeBuilder.nodeBuilder().local(true).data(true).settings(defaultSettings).build();
-		node.start();
-		Client client = node.client();
 		if(!client.admin().indices()
 			.prepareExists("imoveis")
 			.execute()
@@ -43,7 +46,6 @@ public class ElasticSearchConfigTest /*extends AbstractTestNGSpringContextTests 
 	
 	@AfterClass
 	public void stopNode() {
-		Client client = node.client();
 		if(client.admin().indices()
 			.prepareExists("imoveis")
 			.execute()
@@ -53,8 +55,6 @@ public class ElasticSearchConfigTest /*extends AbstractTestNGSpringContextTests 
 			client.admin().indices().
 			prepareDelete("imoveis").execute().actionGet();
 		}
-		
-		node.stop();
 	}
 	
 	@Test
@@ -152,6 +152,29 @@ public class ElasticSearchConfigTest /*extends AbstractTestNGSpringContextTests 
 	
 	
 	private ImovelSearchRepository createImovelSearchRepositoryForTest() {
-		return new ImovelElasticSearchRepository(node.client(), "imoveis", "imovel");
+		return new ImovelElasticSearchRepository(client, "imoveis", "imovel");
+	}
+	
+	
+	@Configuration
+	static class SpringConfig {
+		
+		private Settings defaultSettings = ImmutableSettings
+	            .settingsBuilder()
+	            .put("cluster.name", "test-cluster-" + NetworkUtils.getLocalAddress().getHostName())
+	            .build();
+		
+		
+		@Bean(initMethod = "start", destroyMethod = "close") 
+		public Node node() {
+			return NodeBuilder.nodeBuilder().local(true).data(true).settings(defaultSettings).build();
+		}
+		
+		@Bean
+		public Client client() {
+			Client client = node().client();
+			return client;
+		}
+		
 	}
 }
