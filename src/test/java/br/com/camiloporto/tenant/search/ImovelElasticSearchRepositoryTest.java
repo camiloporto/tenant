@@ -2,11 +2,14 @@ package br.com.camiloporto.tenant.search;
 
 import java.util.List;
 
+import org.elasticsearch.node.Node;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import br.com.camiloporto.tenant.builder.ImovelBuilder;
@@ -19,6 +22,19 @@ public class ImovelElasticSearchRepositoryTest extends AbstractTestNGSpringConte
 	
 	@Autowired
 	private ImovelElasticSearchRepository repository;
+	
+	@Autowired
+	private Node node;
+	
+	@BeforeMethod
+	public void createSearchIndex() {
+		node.client().admin().indices().prepareCreate("imoveis").execute();
+	}
+	
+	@AfterMethod
+	public void clearSearchIndex() {
+		node.client().admin().indices().prepareDelete("imoveis").execute();
+	}
 	
 	@Test
 	public void deveIndexarUmImovel() {

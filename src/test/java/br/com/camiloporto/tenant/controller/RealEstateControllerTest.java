@@ -22,6 +22,7 @@ import org.testng.annotations.Test;
 import br.com.camiloporto.tenant.builder.ImovelBuilder;
 import br.com.camiloporto.tenant.model.Imovel;
 import br.com.camiloporto.tenant.repository.ImovelRepository;
+import br.com.camiloporto.tenant.search.ImovelElasticSearchRepository;
 
 @ContextConfiguration(locations = { 
 		"/META-INF/spring/applicationContext.xml",
@@ -34,6 +35,9 @@ public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 	
 	@Autowired
 	private ImovelRepository imovelRepository;
+	
+	@Autowired
+	private ImovelElasticSearchRepository searchRepository;
 	
 	@Autowired 
 	private WebApplicationContext wac;
@@ -61,6 +65,7 @@ public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 			.naRua("Tereza Campos")
 			.create();
 		imovelRepository.save(i);
+		searchRepository.index(i);
 		
 		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/realestates"))
 				.andExpect(MockMvcResultMatchers.status().isOk())
@@ -88,6 +93,7 @@ public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 			.naRua("Tereza Campos")
 			.create();
 		imovelRepository.save(i);
+		searchRepository.index(i);
 		
 		Imovel i2 = new ImovelBuilder()
 			.doTipo("Apartamento")
@@ -97,6 +103,7 @@ public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 			.naRua("Integracao")
 			.create();
 		imovelRepository.save(i2);
+		searchRepository.index(i2);
 		
 		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/realestates").param("q", "candelaria"))
 				.andExpect(MockMvcResultMatchers.status().isOk())
