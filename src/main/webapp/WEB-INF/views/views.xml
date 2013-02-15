@@ -24,5 +24,9 @@
   <definition name="index-imovel" extends="main">
   	<put-attribute name="body" value="/WEB-INF/views/index.jsp" />
   </definition>
+  
+  <definition name="lista-imovel" extends="main">
+  	<put-attribute name="body" value="/WEB-INF/views/realestate/index.jsp" />
+  </definition>
 
 </tiles-definitions>
