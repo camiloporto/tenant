@@ -16,6 +16,7 @@
     <put-attribute name="footer" value="/WEB-INF/views/footer.jspx" />
   </definition>
   
+  <!-- Layout do inquilinus -->
   <definition name="main" template="/WEB-INF/layouts/layout-main.jspx">
   	<put-attribute name="header" value="/WEB-INF/views/header.jspx" />
     <put-attribute name="footer" value="/WEB-INF/views/footer.jspx" />

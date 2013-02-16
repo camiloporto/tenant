@@ -93,20 +93,5 @@
 		
 </div> <!-- container -->
   	
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-		$("#searchForm").submit(function() {
-			alert("Opa");
-			var form = $(this);
-			var formData = $(this).serialize();
-			$.ajax({ 
-				type: "POST", 
-				url: form.attr("action"), 
-				data: formData, 
-				contentType: "application/x-www-form-urlencoded" 
-			});
-// 			return false;
-		});
-	</script>
+    
   
