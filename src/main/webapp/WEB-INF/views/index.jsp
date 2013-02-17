@@ -1,4 +1,4 @@
-	<div class="container" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<div class="container">
 		<div class="row">
 	        <div class="span7">
 	            <div class="hero-unit">

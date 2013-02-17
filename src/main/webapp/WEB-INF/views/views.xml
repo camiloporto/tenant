@@ -28,5 +28,9 @@
   <definition name="realestate/index" extends="main">
   	<put-attribute name="body" value="/WEB-INF/views/realestate/index.jsp" />
   </definition>
+  
+  <definition name="realestate/detail" extends="main">
+  	<put-attribute name="body" value="/WEB-INF/views/realestate/index.jsp" />
+  </definition>
 
 </tiles-definitions>

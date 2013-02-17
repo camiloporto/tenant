@@ -2,13 +2,15 @@
 	<jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
 	
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />  
-	<jsp:directive.page pageEncoding="UTF-8" /> 
+	<jsp:directive.page pageEncoding="UTF-8" />
+	<c:url var="cssBootstrapMinResponsive" value="/styles/bootstrap-responsive.css" /> 
+	<c:url var="cssBootstrapMin" value="/styles/bootstrap.min.css" />
 <head>
 	<!-- Bootstrap -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link href="styles/bootstrap-responsive.css" rel="stylesheet" />
+	<link href="${cssBootstrapMinResponsive}" rel="stylesheet" />
 		
-	<link href="styles/bootstrap.min.css" rel="stylesheet" media="screen" />
+	<link href="${cssBootstrapMin}" rel="stylesheet" media="screen" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Inquilinus.com</title>
 	<!-- Estilo da pagina principal -->

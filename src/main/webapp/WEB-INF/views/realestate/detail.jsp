@@ -1,22 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Tenant.com</title>
-<!-- Bootstrap -->
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="/Tenant/styles/bootstrap-responsive.css" rel="stylesheet">
-<link href="/Tenant/styles/bootstrap.min.css" rel="stylesheet" media="screen">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <style type="text/css">
-body {
-	padding-top: 60px;
-	padding-bottom: 40px;
-}
-
 .imovel-local {
 	margin: 0;
 }
@@ -48,38 +31,6 @@ body {
     display : none;
 }
 </style>
-</head>
-<body>
-	
-	<div class="navbar navbar-inverse navbar-fixed-top" id="navbar">
-		<div class="navbar-inner">
-			<div class="container">
-				<a class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse"> 
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</a> 
-				<a class="brand" href="#" style="margin: 0 1em 0 0">Lorem Ips</a>
-				<div class="nav-collapse collapse">
-					<!-- 
-					<ul class="nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#about" class="btn btn-primary btn-large">Novo</a></li>
-						<li><a href="#contact">Contact</a></li>
-					</ul>
-					 -->
-					 <a href="http://camiloporto.wufoo.com/forms/z7x3p3/" 
-					 	class="btn btn-primary" target="_blank">Cadastre um Novo Imóvel</a>
-					<form class="navbar-search pull-right">
-						<input class="search-query" type="text" placeholder="Pesquisa..."></input>
-						<button type="submit" class="btn">Procurar</button>
-					</form>
-				</div>
-				<!--/.nav-collapse -->
-			</div>
-		</div>
-	</div>
 	<div class="container">
 		<div id="imovel-info">
 			<h3>${imovel.tipo}</h3>
@@ -119,12 +70,13 @@ body {
 					href="#myCarousel" data-slide="next">&rsaquo;</a>
 			</div>
 			<div>
-				<a href="#" id="lnkUploadMedia">Tenho uma foto deste imóvel e gostaria de compartilhar</a>
+				<a href="#" id="lnkUploadMedia">Tenho uma foto deste imÃ³vel e gostaria de compartilhar</a>
 				<div id="uploadDiv">
-                	<span>No momento o envio de fotos não está disponível. Você pode nos enviar sua foto através do email <a href="#">camiloporto@gmail.com</a></span>
+                	<span>No momento o envio de fotos nÃ£o estÃ¡ disponÃ­vel. VocÃª pode nos enviar sua foto atravÃ©s do email <a href="#">camiloporto@gmail.com</a></span>
             	</div>
 			</div>
 		</div>
+		<!-- 
 		<div id="imovel-comments">
 			<h3>Comentarios</h3>
 			<div class="media">
@@ -167,11 +119,8 @@ body {
 				</div>
 			</div>
 		</div>
-		<footer class="footer" style="margin : 2em 0;">© Lorem Ips</footer>
+		 -->
 	</div>
-	<!-- container -->
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
-	<script src="/Tenant/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		$('#myCarousel').carousel({
 			interval: 3000
@@ -180,5 +129,3 @@ body {
 		    $('#uploadDiv').toggle('slow');
 		});
 	</script>
-</body>
-</html>
