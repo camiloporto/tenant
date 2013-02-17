@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <style type="text/css">
 .imovel-local {
 	margin: 0;
@@ -76,7 +76,6 @@
             	</div>
 			</div>
 		</div>
-		<!-- 
 		<div id="imovel-comments">
 			<h3>Comentarios</h3>
 			<div class="media">
@@ -119,7 +118,6 @@
 				</div>
 			</div>
 		</div>
-		 -->
 	</div>
 	<script type="text/javascript">
 		$('#myCarousel').carousel({

@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style type="text/css">
 body {
 	padding-top: 60px;
@@ -8,7 +10,7 @@ body {
 	margin: 0;
 }
 </style>
-	<div class="container" id="divListaImoveis" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<div class="container" id="divListaImoveis">
 		<c:forEach items="${imoveis}" var="imovel">
 			<div class="media well">
 				<a class="pull-left" href="realestates/${imovel.id}"> 
