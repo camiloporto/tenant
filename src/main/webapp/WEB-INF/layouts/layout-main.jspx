@@ -1,0 +1,33 @@
+<html xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:tiles="http://tiles.apache.org/tags-tiles" xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" >
+	<jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
+	
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />  
+	<jsp:directive.page pageEncoding="UTF-8" />
+	<c:url var="cssBootstrapMinResponsive" value="/styles/bootstrap-responsive.css" /> 
+	<c:url var="cssBootstrapMin" value="/styles/bootstrap.min.css" />
+<head>
+	<!-- Bootstrap -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link href="${cssBootstrapMinResponsive}" rel="stylesheet" />
+		
+	<link href="${cssBootstrapMin}" rel="stylesheet" media="screen" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Inquilinus.com</title>
+	<!-- Estilo da pagina principal -->
+	<style type="text/css">
+	  	body {
+			padding-top: 60px;
+			padding-bottom: 40px;
+		}
+		.imovel-local {
+			margin: 0;
+		}
+  </style>
+</head>
+<body>
+	
+	<tiles:insertAttribute name="header" ignore="true"/>
+	<tiles:insertAttribute name="body" ignore="true"/>
+	<tiles:insertAttribute name="footer" ignore="true"/>
+</body>
+</html>
