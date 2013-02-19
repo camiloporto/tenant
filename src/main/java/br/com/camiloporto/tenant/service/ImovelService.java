@@ -10,4 +10,6 @@ import br.com.camiloporto.tenant.model.Imovel;
 public interface ImovelService {
 
 	List<Imovel> findAllSortedByUltimaAtualizacao();
+
+	List<Imovel> genericQuery(String q);
 }

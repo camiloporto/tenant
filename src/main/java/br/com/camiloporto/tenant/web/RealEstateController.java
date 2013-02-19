@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.camiloporto.tenant.model.Imovel;
-import br.com.camiloporto.tenant.search.ImovelElasticSearchRepository;
 import br.com.camiloporto.tenant.service.ImovelService;
 
 @RequestMapping("/realestates")
@@ -20,9 +19,6 @@ public class RealEstateController {
 	
 	@Autowired
 	private ImovelService imovelService;
-	
-	@Autowired
-	private ImovelElasticSearchRepository imovelSearchRepository;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView home() {
@@ -45,7 +41,7 @@ public class RealEstateController {
 	@RequestMapping(method = RequestMethod.GET, params="q")
 	public ModelAndView search(@RequestParam String q) {
 		ModelAndView mav = new ModelAndView("realestate/index");
-		List<Imovel> imoveis = imovelSearchRepository.genericQuery(q);
+		List<Imovel> imoveis = imovelService.genericQuery(q);
 		mav.addObject("imoveis", imoveis);
 		
 		return mav;
