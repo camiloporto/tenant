@@ -19,7 +19,8 @@ public class ImovelServiceImpl implements ImovelService {
 	
 	@Override
 	public List<Imovel> findAllSortedByUltimaAtualizacao() {
-		return imovelRepository.findAll(byUltimaAtualizacaoDesc);
+//		return imovelRepository.findAll(byUltimaAtualizacaoDesc);
+		return imovelSearchRepository.findAll();
 	}
 	
 	@Override

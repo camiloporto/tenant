@@ -1,7 +1,11 @@
 package br.com.camiloporto.tenant.search;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
+import org.elasticsearch.cluster.ClusterState;
+import org.elasticsearch.cluster.metadata.IndexMetaData;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.node.Node;
@@ -28,7 +32,7 @@ public class ImovelElasticSearchRepositoryTest extends AbstractTestNGSpringConte
 	private Node node;
 	
 	@BeforeMethod
-	public void createSearchIndex() {
+	public void clearIndexData() {
 		QueryBuilder qb = QueryBuilders.matchAllQuery();
 		node.client()
 			.prepareDeleteByQuery(qb.toString())
@@ -36,6 +40,16 @@ public class ImovelElasticSearchRepositoryTest extends AbstractTestNGSpringConte
 			.setIndices("imoveis")
 			.execute()
 			.actionGet();
+	}
+	
+	@BeforeMethod
+	public void printIndexMappings() {
+		ClusterState state = node.client().admin().cluster().prepareState().setFilterIndices("imoveis").execute().actionGet().getState();
+		IndexMetaData imd = state.getMetaData().index("imoveis");
+		for (String m : imd.mappings().keySet()) {
+			System.out
+					.println("ImovelElasticSearchRepositoryTest.printIndexMappings() " +m);
+		}
 	}
 	
 	@Test
@@ -124,6 +138,49 @@ public class ImovelElasticSearchRepositoryTest extends AbstractTestNGSpringConte
 				result.size(), 
 				expectedCount, 
 				"numero de hits diferente do esperado");
+		
+	}
+	
+	@Test
+	public void deveRecuperarTodos() {
+		Imovel i = new ImovelBuilder()
+			.doTipo("apartamento")
+			.noEstado("RN")
+			.naCidade("Natal")
+			.noBairro("Lagoa Nova")
+			.naRua("Tereza Campos")
+			.comComplemento("Lifestyle - 302")
+			.create();
+		i.setUltimaAtualizacao(new GregorianCalendar(2010, Calendar.JANUARY, 10).getTime());
+		i.setId(1L);
+	
+		Imovel i2 = new ImovelBuilder()
+			.doTipo("casa")
+			.noEstado("RN")
+			.naCidade("Natal")
+			.noBairro("Lagoa Nova")
+			.naRua("Potiguares")
+			.comComplemento("Residencial Vitoria - 302")
+			.create();
+		i2.setUltimaAtualizacao(new GregorianCalendar(2010, Calendar.JANUARY, 11).getTime());
+		i2.setId(2L);
+		
+	
+		repository.index(i);
+		repository.index(i2);
+		
+		List<Imovel> result = repository.findAll();
+		int expectedCount = 2;
+		Assert.assertEquals(
+				result.size(), 
+				expectedCount, 
+				"numero de hits diferente do esperado");
+		
+		String expectedFirstRua = "Potiguares";
+		String expectedSecondRua = "Tereza Campos";
+		
+		Assert.assertEquals(result.get(0).getRua(), expectedFirstRua, "ordem da pesquisa diferente da esperada");
+		Assert.assertEquals(result.get(1).getRua(), expectedSecondRua, "ordem da pesquisa diferente da esperada");
 		
 	}
 	

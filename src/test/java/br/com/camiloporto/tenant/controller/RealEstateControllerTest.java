@@ -2,6 +2,9 @@ package br.com.camiloporto.tenant.controller;
 
 import java.util.List;
 
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.node.Node;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
@@ -43,6 +46,20 @@ public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 	private WebApplicationContext wac;
 	
 	private MockMvc mockMvc;
+	
+	@Autowired
+	private Node node;
+	
+	@BeforeMethod
+	public void cleanIndexData() {
+		QueryBuilder qb = QueryBuilders.matchAllQuery();
+		node.client()
+			.prepareDeleteByQuery(qb.toString())
+			.setQuery(qb.toString())
+			.setIndices("imoveis")
+			.execute()
+			.actionGet();
+	}
 	
 	@BeforeClass
 	public void setUpMockMvc() {

@@ -54,6 +54,12 @@
     <!-- ElasticSearch Node FactoryBean -->
     <bean class="br.com.camiloporto.tenant.search.ElasticSearchNodeFactoryBean" id="elasticSearchNode">
     	<property name="configLocation" value="classpath:META-INF/elasticsearch.properties"/>
+    	<property name="mappingRoot" value="/elasticsearch" />
+    	<property name="mappings">
+    		<list>
+    			<value>imoveis/imovel</value>
+    		</list>
+    	</property>
     </bean>
     
     <!-- 
