@@ -1,0 +1,4 @@
+cluster:
+	name: tenant.production.cluster
+node:
+	name: tenant-node

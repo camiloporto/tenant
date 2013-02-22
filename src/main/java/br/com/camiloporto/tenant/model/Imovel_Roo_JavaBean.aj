@@ -8,6 +8,14 @@ import java.util.Date;
 
 privileged aspect Imovel_Roo_JavaBean {
     
+    public String Imovel.getId() {
+        return this.id;
+    }
+    
+    public void Imovel.setId(String id) {
+        this.id = id;
+    }
+    
     public String Imovel.getEstado() {
         return this.estado;
     }

@@ -6,9 +6,9 @@ import br.com.camiloporto.tenant.model.Imovel;
 
 public interface ImovelSearchRepository {
 
-	void index(Imovel i);
+	Imovel index(Imovel i);
 
-	Imovel findById(long id);
+	Imovel findById(String id);
 
 	List<Imovel> genericQuery(String string);
 
