@@ -12,7 +12,7 @@
             <!-- property name="hibernate.validator.apply_to_ddl" value="false" /-->
             <!-- property name="hibernate.validator.autoregister_listeners" value="false" /-->
         </properties>
-        <class>br.com.camiloporto.tenant.model.Imovel</class>
+<!--         <class>br.com.camiloporto.tenant.model.Imovel</class> -->
         <class>br.com.camiloporto.tenant.model.Usuario</class>
     </persistence-unit>
 </persistence>
