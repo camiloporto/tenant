@@ -17,19 +17,19 @@ privileged aspect Imovel_Roo_Jpa_Entity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long Imovel.id;
+    @Column(name = "id_")
+    private Long Imovel.id_;
     
     @Version
     @Column(name = "version")
     private Integer Imovel.version;
     
-    public Long Imovel.getId() {
-        return this.id;
+    public Long Imovel.getId_() {
+        return this.id_;
     }
     
-    public void Imovel.setId(Long id) {
-        this.id = id;
+    public void Imovel.setId_(Long id) {
+        this.id_ = id;
     }
     
     public Integer Imovel.getVersion() {

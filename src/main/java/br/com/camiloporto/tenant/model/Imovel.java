@@ -21,6 +21,8 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJson
 public class Imovel {
 
+	private String id;
+	
     @NotNull
     private String estado;
 

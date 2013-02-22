@@ -3,6 +3,7 @@ package br.com.camiloporto.tenant.search;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.index.query.QueryBuilder;
@@ -40,45 +41,15 @@ public class ImovelElasticSearchRepository implements ImovelSearchRepository {
 		this.node = node;
 	}
 	
-//	@PostConstruct
-//	public void createindex() {
-//		client().admin().indices().
-//		client().admin().indices().preparePutMapping(indexName)
-//			.setIndices(indexName)
-//			.setType(indexTypeName)
-//			.setSource(getIndexJSON())
-//			.execute()
-//			.actionGet();
-//	}
-	
-//	private XContentBuilder getIndexJSON() {
-//		XContentBuilder builder;
-//		try {
-//			builder = XContentFactory.jsonBuilder()
-//					.startObject()
-//						.startObject("imovel")
-//							.startObject("properties")
-//								.startObject("ultimaAtualizacao")
-//									.field("type", "date")
-//								.endObject()
-//							.endObject()
-//						.endObject()
-//					.endObject();
-//			return builder;
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//			throw new IllegalArgumentException(e);
-//		}
-//
-//	}
-
 	@Override
-	public void index(Imovel i) {
+	public Imovel index(Imovel i) {
 		String json = i.toJson();
-		client().prepareIndex(indexName, indexTypeName, i.getId().toString())
-        .setRefresh(true) //
-        .setSource(json.getBytes()) 
-        .execute().actionGet();
+		IndexResponse ir = client().prepareIndex(indexName, indexTypeName)
+	        .setRefresh(true)
+	        .setSource(json.getBytes()) 
+	        .execute().actionGet();
+		i.setId(ir.id());
+		return i;
 	}
 	
 	private Client client() {
@@ -86,7 +57,7 @@ public class ImovelElasticSearchRepository implements ImovelSearchRepository {
 	}
 
 	@Override
-	public Imovel findById(long id) {
+	public Imovel findById(String id) {
 		SearchResponse response = client().prepareSearch(indexName).setTypes(indexTypeName)
 	            .setQuery(QueryBuilders.boolQuery()
 	            .must(QueryBuilders.termQuery("_id", id))).execute().actionGet();

@@ -24,7 +24,6 @@ import org.testng.annotations.Test;
 
 import br.com.camiloporto.tenant.builder.ImovelBuilder;
 import br.com.camiloporto.tenant.model.Imovel;
-import br.com.camiloporto.tenant.repository.ImovelRepository;
 import br.com.camiloporto.tenant.search.ImovelElasticSearchRepository;
 
 @ContextConfiguration(locations = { 
@@ -36,8 +35,8 @@ import br.com.camiloporto.tenant.search.ImovelElasticSearchRepository;
 @ActiveProfiles("unit-test")
 public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 	
-	@Autowired
-	private ImovelRepository imovelRepository;
+//	@Autowired
+//	private ImovelRepository imovelRepository;
 	
 	@Autowired
 	private ImovelElasticSearchRepository searchRepository;
@@ -50,16 +49,6 @@ public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 	@Autowired
 	private Node node;
 	
-	@BeforeMethod
-	public void cleanIndexData() {
-		QueryBuilder qb = QueryBuilders.matchAllQuery();
-		node.client()
-			.prepareDeleteByQuery(qb.toString())
-			.setQuery(qb.toString())
-			.setIndices("imoveis")
-			.execute()
-			.actionGet();
-	}
 	
 	@BeforeClass
 	public void setUpMockMvc() {
@@ -68,8 +57,11 @@ public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 	}
 	
 	@BeforeMethod
-	public void cleanAllData() {
-		imovelRepository.deleteAll();
+	public void clearIndexData() {
+		QueryBuilder qb = QueryBuilders.matchAllQuery();
+		node.client().prepareDeleteByQuery(qb.toString())
+				.setQuery(qb.toString()).setIndices("imoveis").execute()
+				.actionGet();
 	}
 	
 	@Test
@@ -81,7 +73,6 @@ public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 			.noBairro("Lagoa Nova")
 			.naRua("Tereza Campos")
 			.create();
-		imovelRepository.save(i);
 		searchRepository.index(i);
 		
 		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/realestates"))
@@ -109,7 +100,6 @@ public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 			.noBairro("Lagoa Nova")
 			.naRua("Tereza Campos")
 			.create();
-		imovelRepository.save(i);
 		searchRepository.index(i);
 		
 		Imovel i2 = new ImovelBuilder()
@@ -119,7 +109,6 @@ public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 			.noBairro("Candelaria")
 			.naRua("Integracao")
 			.create();
-		imovelRepository.save(i2);
 		searchRepository.index(i2);
 		
 		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/realestates").param("q", "candelaria"))
@@ -147,7 +136,7 @@ public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 			.noBairro("Lagoa Nova")
 			.naRua("Tereza Campos")
 			.create();
-		imovelRepository.save(i);
+		searchRepository.index(i);
 		
 		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/realestates/" + i.getId()))
 				.andExpect(MockMvcResultMatchers.status().isOk())

@@ -30,7 +30,7 @@ public class RealEstateController {
 	}
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public ModelAndView detail(@PathVariable Long id) {
+	public ModelAndView detail(@PathVariable String id) {
 		ModelAndView mav = new ModelAndView("realestate/detail");
 		Imovel saved = imovelService.findImovel(id);
 		mav.addObject("imovel", saved);

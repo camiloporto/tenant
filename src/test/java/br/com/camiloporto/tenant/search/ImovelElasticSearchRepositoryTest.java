@@ -62,11 +62,11 @@ public class ImovelElasticSearchRepositoryTest extends AbstractTestNGSpringConte
 			.naRua("Tereza Campos")
 			.comComplemento("Lifestyle - 302")
 			.create();
-		i.setId(1L);
 		
 		repository.index(i);
+		Assert.assertNotNull(i.getId(), "deveria ter atribuido um id ao imovel indexado");
 		
-		Imovel retrieved = repository.findById(1L);
+		Imovel retrieved = repository.findById(i.getId());
 		Assert.assertEquals(
 				retrieved.getComplemento(), 
 				"Lifestyle - 302", 
@@ -84,11 +84,10 @@ public class ImovelElasticSearchRepositoryTest extends AbstractTestNGSpringConte
 			.naRua("Tereza Campos")
 			.comComplemento("Lifestyle - 302")
 			.create();
-		i.setId(1L);
 		
 		repository.index(i);
 		
-		Imovel retrieved = repository.findById(1L);
+		Imovel retrieved = repository.findById(i.getId());
 		Assert.assertEquals(
 				retrieved.getComplemento(), 
 				"Lifestyle - 302", 
@@ -98,7 +97,7 @@ public class ImovelElasticSearchRepositoryTest extends AbstractTestNGSpringConte
 	
 	@Test
 	public void deveRetornarNullQuandoNaoEncontrarImovelPorId() {
-		final Long idInexistente = 9999L;
+		final String idInexistente = "abcdef";
 		
 		Imovel retrieved = repository.findById(idInexistente);
 		Assert.assertNull(
@@ -117,7 +116,6 @@ public class ImovelElasticSearchRepositoryTest extends AbstractTestNGSpringConte
 			.naRua("Tereza Campos")
 			.comComplemento("Lifestyle - 302")
 			.create();
-		i.setId(1L);
 		
 		Imovel i2 = new ImovelBuilder()
 			.doTipo("casa")
@@ -127,7 +125,6 @@ public class ImovelElasticSearchRepositoryTest extends AbstractTestNGSpringConte
 			.naRua("Potiguares")
 			.comComplemento("Residencial Vitoria - 302")
 			.create();
-		i2.setId(2L);
 		
 		repository.index(i);
 		repository.index(i2);
@@ -152,7 +149,6 @@ public class ImovelElasticSearchRepositoryTest extends AbstractTestNGSpringConte
 			.comComplemento("Lifestyle - 302")
 			.create();
 		i.setUltimaAtualizacao(new GregorianCalendar(2010, Calendar.JANUARY, 10).getTime());
-		i.setId(1L);
 	
 		Imovel i2 = new ImovelBuilder()
 			.doTipo("casa")
@@ -163,7 +159,6 @@ public class ImovelElasticSearchRepositoryTest extends AbstractTestNGSpringConte
 			.comComplemento("Residencial Vitoria - 302")
 			.create();
 		i2.setUltimaAtualizacao(new GregorianCalendar(2010, Calendar.JANUARY, 11).getTime());
-		i2.setId(2L);
 		
 	
 		repository.index(i);
