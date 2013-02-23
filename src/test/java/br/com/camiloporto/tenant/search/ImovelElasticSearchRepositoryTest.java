@@ -1,14 +1,19 @@
 package br.com.camiloporto.tenant.search;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
+import org.elasticsearch.cluster.ClusterState;
+import org.elasticsearch.cluster.metadata.IndexMetaData;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.node.Node;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -27,13 +32,24 @@ public class ImovelElasticSearchRepositoryTest extends AbstractTestNGSpringConte
 	private Node node;
 	
 	@BeforeMethod
-	public void createSearchIndex() {
-		node.client().admin().indices().prepareCreate("imoveis").execute();
+	public void clearIndexData() {
+		QueryBuilder qb = QueryBuilders.matchAllQuery();
+		node.client()
+			.prepareDeleteByQuery(qb.toString())
+			.setQuery(qb.toString())
+			.setIndices("imoveis")
+			.execute()
+			.actionGet();
 	}
 	
-	@AfterMethod
-	public void clearSearchIndex() {
-		node.client().admin().indices().prepareDelete("imoveis").execute();
+	@BeforeMethod
+	public void printIndexMappings() {
+		ClusterState state = node.client().admin().cluster().prepareState().setFilterIndices("imoveis").execute().actionGet().getState();
+		IndexMetaData imd = state.getMetaData().index("imoveis");
+		for (String m : imd.mappings().keySet()) {
+			System.out
+					.println("ImovelElasticSearchRepositoryTest.printIndexMappings() " +m);
+		}
 	}
 	
 	@Test
@@ -46,11 +62,11 @@ public class ImovelElasticSearchRepositoryTest extends AbstractTestNGSpringConte
 			.naRua("Tereza Campos")
 			.comComplemento("Lifestyle - 302")
 			.create();
-		i.setId(1L);
 		
 		repository.index(i);
+		Assert.assertNotNull(i.getId(), "deveria ter atribuido um id ao imovel indexado");
 		
-		Imovel retrieved = repository.findById(1L);
+		Imovel retrieved = repository.findById(i.getId());
 		Assert.assertEquals(
 				retrieved.getComplemento(), 
 				"Lifestyle - 302", 
@@ -68,11 +84,10 @@ public class ImovelElasticSearchRepositoryTest extends AbstractTestNGSpringConte
 			.naRua("Tereza Campos")
 			.comComplemento("Lifestyle - 302")
 			.create();
-		i.setId(1L);
 		
 		repository.index(i);
 		
-		Imovel retrieved = repository.findById(1L);
+		Imovel retrieved = repository.findById(i.getId());
 		Assert.assertEquals(
 				retrieved.getComplemento(), 
 				"Lifestyle - 302", 
@@ -82,7 +97,7 @@ public class ImovelElasticSearchRepositoryTest extends AbstractTestNGSpringConte
 	
 	@Test
 	public void deveRetornarNullQuandoNaoEncontrarImovelPorId() {
-		final Long idInexistente = 9999L;
+		final String idInexistente = "abcdef";
 		
 		Imovel retrieved = repository.findById(idInexistente);
 		Assert.assertNull(
@@ -101,7 +116,6 @@ public class ImovelElasticSearchRepositoryTest extends AbstractTestNGSpringConte
 			.naRua("Tereza Campos")
 			.comComplemento("Lifestyle - 302")
 			.create();
-		i.setId(1L);
 		
 		Imovel i2 = new ImovelBuilder()
 			.doTipo("casa")
@@ -111,7 +125,6 @@ public class ImovelElasticSearchRepositoryTest extends AbstractTestNGSpringConte
 			.naRua("Potiguares")
 			.comComplemento("Residencial Vitoria - 302")
 			.create();
-		i2.setId(2L);
 		
 		repository.index(i);
 		repository.index(i2);
@@ -122,6 +135,47 @@ public class ImovelElasticSearchRepositoryTest extends AbstractTestNGSpringConte
 				result.size(), 
 				expectedCount, 
 				"numero de hits diferente do esperado");
+		
+	}
+	
+	@Test
+	public void deveRecuperarTodos() {
+		Imovel i = new ImovelBuilder()
+			.doTipo("apartamento")
+			.noEstado("RN")
+			.naCidade("Natal")
+			.noBairro("Lagoa Nova")
+			.naRua("Tereza Campos")
+			.comComplemento("Lifestyle - 302")
+			.create();
+		i.setUltimaAtualizacao(new GregorianCalendar(2010, Calendar.JANUARY, 10).getTime());
+	
+		Imovel i2 = new ImovelBuilder()
+			.doTipo("casa")
+			.noEstado("RN")
+			.naCidade("Natal")
+			.noBairro("Lagoa Nova")
+			.naRua("Potiguares")
+			.comComplemento("Residencial Vitoria - 302")
+			.create();
+		i2.setUltimaAtualizacao(new GregorianCalendar(2010, Calendar.JANUARY, 11).getTime());
+		
+	
+		repository.index(i);
+		repository.index(i2);
+		
+		List<Imovel> result = repository.findAll();
+		int expectedCount = 2;
+		Assert.assertEquals(
+				result.size(), 
+				expectedCount, 
+				"numero de hits diferente do esperado");
+		
+		String expectedFirstRua = "Potiguares";
+		String expectedSecondRua = "Tereza Campos";
+		
+		Assert.assertEquals(result.get(0).getRua(), expectedFirstRua, "ordem da pesquisa diferente da esperada");
+		Assert.assertEquals(result.get(1).getRua(), expectedSecondRua, "ordem da pesquisa diferente da esperada");
 		
 	}
 	

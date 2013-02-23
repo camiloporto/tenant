@@ -1,7 +1,12 @@
 package br.com.camiloporto.tenant.service;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.node.Node;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
@@ -12,9 +17,10 @@ import org.testng.annotations.Test;
 
 import br.com.camiloporto.tenant.builder.ImovelBuilder;
 import br.com.camiloporto.tenant.model.Imovel;
-import br.com.camiloporto.tenant.repository.ImovelRepository;
+import br.com.camiloporto.tenant.search.ImovelElasticSearchRepository;
 
-@ContextConfiguration(locations = {"/META-INF/spring/applicationContext.xml", "/META-INF/spring/applicationContext-jpa.xml"})
+@ContextConfiguration(locations = { "/META-INF/spring/applicationContext.xml",
+		"/META-INF/spring/applicationContext-jpa.xml" })
 @ActiveProfiles("unit-test")
 public class ImovelServiceTest extends AbstractTestNGSpringContextTests {
 
@@ -22,11 +28,20 @@ public class ImovelServiceTest extends AbstractTestNGSpringContextTests {
 	private ImovelService service;
 	
 	@Autowired
-	private ImovelRepository repository;
+	private Node node;
+
+//	@Autowired
+//	private ImovelRepository repository;
 	
+	@Autowired
+	private ImovelElasticSearchRepository repository;
+
 	@BeforeMethod
-	public void cleanAllData() {
-		repository.deleteAll();
+	public void clearIndexData() {
+		QueryBuilder qb = QueryBuilders.matchAllQuery();
+		node.client().prepareDeleteByQuery(qb.toString())
+				.setQuery(qb.toString()).setIndices("imoveis").execute()
+				.actionGet();
 	}
 
 	@Test
@@ -37,15 +52,17 @@ public class ImovelServiceTest extends AbstractTestNGSpringContextTests {
 		Imovel i1 = new ImovelBuilder().doTipo("Apartamento").noEstado("RN")
 				.naCidade("Natal").noBairro("Lagoa Nova").naRua(ruaImovel1)
 				.create();
+		i1.setUltimaAtualizacao(new GregorianCalendar(2010, Calendar.JANUARY, 10).getTime());
 
-		repository.save(i1);
+		repository.index(i1);
 		Thread.sleep(1000);
 
 		Imovel i2 = new ImovelBuilder().doTipo("Apartamento").noEstado("RN")
 				.naCidade("Natal").noBairro("Candelaria").naRua(ruaImovel2)
 				.create();
+		i2.setUltimaAtualizacao(new GregorianCalendar(2010, Calendar.JANUARY, 11).getTime());
 
-		repository.save(i2);
+		repository.index(i2);
 
 		List<Imovel> all = service.findAllSortedByUltimaAtualizacao();
 
@@ -57,29 +74,26 @@ public class ImovelServiceTest extends AbstractTestNGSpringContextTests {
 				"ordem dos imoveis diferente do esperado");
 
 	}
-	
+
 	@Test
 	public void deveRecuperarUmImovelPeloId() {
-		Imovel i = new ImovelBuilder()
-			.doTipo("Apartamento")
-			.noEstado("RN")
-			.naCidade("Natal")
-			.noBairro("Lagoa Nova")
-			.naRua("Tereza Campos")
-			.create();
+		Imovel i = new ImovelBuilder().doTipo("Apartamento").noEstado("RN")
+				.naCidade("Natal").noBairro("Lagoa Nova")
+				.naRua("Tereza Campos").create();
 		
 		service.saveImovel(i);
-		Long id = i.getId();
-		
+		String id = i.getId();
+
 		Imovel saved = service.findImovel(id);
 		Assert.assertNotNull(saved, "deveria recuperar imovel salvo");
-		Assert.assertEquals(saved.getRua(), "Tereza Campos", "rua do imovel diferente do esperado");
+		Assert.assertEquals(saved.getRua(), "Tereza Campos",
+				"rua do imovel diferente do esperado");
 	}
-	
+
 	@Test
 	public void aoProcurarPorImovelInexistente_DeveRetornarNull() {
-		Imovel inexistente = service.findImovel(999L);
+		Imovel inexistente = service.findImovel("abcdef");
 		Assert.assertNull(inexistente, "imovel deveria ser nulo");
 	}
-	
+
 }

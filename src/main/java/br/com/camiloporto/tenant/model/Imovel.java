@@ -2,25 +2,28 @@ package br.com.camiloporto.tenant.model;
 
 import java.util.Calendar;
 import java.util.Date;
+
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
-import org.springframework.roo.addon.jpa.entity.RooJpaEntity;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.serializable.RooSerializable;
 import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaEntity
+//@RooJpaEntity
 @RooSerializable
 @RooJson
 public class Imovel {
 
+	private String id;
+	
     @NotNull
     private String estado;
 

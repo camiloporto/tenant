@@ -3,11 +3,15 @@ package br.com.camiloporto.tenant.search;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
+import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.node.Node;
 import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -38,12 +42,14 @@ public class ImovelElasticSearchRepository implements ImovelSearchRepository {
 	}
 	
 	@Override
-	public void index(Imovel i) {
+	public Imovel index(Imovel i) {
 		String json = i.toJson();
-		client().prepareIndex(indexName, indexTypeName, i.getId().toString())
-        .setRefresh(true) //
-        .setSource(json.getBytes()) 
-        .execute().actionGet();
+		IndexResponse ir = client().prepareIndex(indexName, indexTypeName)
+	        .setRefresh(true)
+	        .setSource(json.getBytes()) 
+	        .execute().actionGet();
+		i.setId(ir.id());
+		return i;
 	}
 	
 	private Client client() {
@@ -51,7 +57,7 @@ public class ImovelElasticSearchRepository implements ImovelSearchRepository {
 	}
 
 	@Override
-	public Imovel findById(long id) {
+	public Imovel findById(String id) {
 		SearchResponse response = client().prepareSearch(indexName).setTypes(indexTypeName)
 	            .setQuery(QueryBuilders.boolQuery()
 	            .must(QueryBuilders.termQuery("_id", id))).execute().actionGet();
@@ -70,11 +76,26 @@ public class ImovelElasticSearchRepository implements ImovelSearchRepository {
 	            .must(QueryBuilders.queryString(query)))
 	            .execute()
 	            .actionGet();
+		return fromHitsToImovel(response.hits());
+	}
+
+	public List<Imovel> findAll() {
+		QueryBuilder qb = QueryBuilders.matchAllQuery();
+		SearchResponse response = client().prepareSearch(indexName).setTypes(indexTypeName)
+	            .setQuery(qb)
+	            .addSort("ultimaAtualizacao", SortOrder.DESC)
+	            .execute()
+	            .actionGet();
+		return fromHitsToImovel(response.hits());
+	}
+	
+	private List<Imovel> fromHitsToImovel(SearchHits hits) {
 		List<Imovel> result = new ArrayList<Imovel>();
-		for (SearchHit hit : response.hits()) {
+		for (SearchHit hit : hits) {
 			result.add(Imovel.fromJsonToImovel(hit.getSourceAsString()));
 		}
 		return result;
 	}
+	
 
 }
