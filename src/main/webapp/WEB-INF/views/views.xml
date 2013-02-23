@@ -31,6 +31,7 @@
   
   <definition name="realestate/detail" extends="main">
   	<put-attribute name="body" value="/WEB-INF/views/realestate/detail.jsp" />
+  	<put-attribute name="customJS" value="/WEB-INF/views/realestate/detail-js.jsp" />
   </definition>
 
 </tiles-definitions>
