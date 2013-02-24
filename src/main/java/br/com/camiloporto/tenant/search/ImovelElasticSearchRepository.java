@@ -8,7 +8,6 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.node.Node;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.sort.SortOrder;
@@ -21,7 +20,7 @@ import br.com.camiloporto.tenant.model.Imovel;
 public class ImovelElasticSearchRepository implements ImovelSearchRepository {
 	
 	@Autowired
-	private Node node;
+	private Client esClient;
 	
 	private String indexName = "imoveis";
 	private String indexTypeName = "imovel";
@@ -37,8 +36,8 @@ public class ImovelElasticSearchRepository implements ImovelSearchRepository {
 		this.indexTypeName = indexTypeName;
 	}
 	
-	public void setNode(Node node) {
-		this.node = node;
+	public void setEsClient(Client esClient) {
+		this.esClient = esClient;
 	}
 	
 	@Override
@@ -53,7 +52,7 @@ public class ImovelElasticSearchRepository implements ImovelSearchRepository {
 	}
 	
 	private Client client() {
-		return node.client();
+		return this.esClient;
 	}
 
 	@Override
