@@ -22,8 +22,8 @@
 	    	</property>
 	    	<property name="nodes">
 	    		<list>
-<!-- 	    			<value>http://48a8085df7ef5888f3ff4b660551475a-us-east-1.foundcluster.com:9200/</value> -->
-						<value>localhost:9300</value>
+	    			<value>48a8085df7ef5888f3ff4b660551475a-us-east-1.foundcluster.com:9200</value>
+<!-- 						<value>localhost:9300</value> -->
 	    		</list>
 	    	</property>
     	</bean>
