@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style type="text/css">
 .imovel-local {
 	margin: 0;
@@ -78,6 +79,15 @@
 		</div>
 		<div id="imovel-comments">
 			<h3>Comentarios</h3>
+			<div id="commentarioFormDiv">
+				<c:url var="commentFormAction" value="/realestates/comment" />
+				<form action="${commentFormAction}" method="POST" id="commentForm">
+					<label for="comment">Envie seu comentário sobre este imóvel</label>
+					<textarea cols="20" rows="5" name="comment" id="comment" style="display: block;"></textarea>
+					<input type="hidden" value="${imovel.id}" name="imovelId">
+					<input type="submit" value="Enviar" />
+				</form>
+			</div>
 			<div class="media">
 				<a class="pull-left"> <img
 					src="http://2.gravatar.com/avatar/22bd03ace6f176bfe0c593650bcf45d8?s=48&d=&r=G"></img>
@@ -119,11 +129,3 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-		$('#myCarousel').carousel({
-			interval: 3000
-		});
-		$('#lnkUploadMedia').click(function(evt){
-		    $('#uploadDiv').toggle('slow');
-		});
-	</script>

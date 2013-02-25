@@ -12,6 +12,21 @@
     
     <!-- Beans for Heroku Database Configuration -->
     <beans profile="heroku">
+    	<!-- ElasticSearch Client FactoryBean -->
+	    <bean class="br.com.camiloporto.tenant.search.ElasticSearchTransportClientFactoryBean" id="elasticSearchClient">
+	    	<property name="mappingRoot" value="/elasticsearch" />
+	    	<property name="mappings">
+	    		<list>
+	    			<value>imoveis/imovel</value>
+	    		</list>
+	    	</property>
+	    	<property name="nodes">
+	    		<list>
+	    			<value>48a8085df7ef5888f3ff4b660551475a-us-east-1.foundcluster.com:9200</value>
+<!-- 						<value>localhost:9300</value> -->
+	    		</list>
+	    	</property>
+    	</bean>
     	<bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
 	        <property name="driverClassName" value="${database.driverClassName}"/>
 	        <property name="url" value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() }"/>

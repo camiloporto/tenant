@@ -40,6 +40,9 @@ public class RealEstateController {
 	
 	@RequestMapping(method = RequestMethod.GET, params="q")
 	public ModelAndView search(@RequestParam String q) {
+		if(q == null || "".equals(q)) {
+			return home();
+		}
 		ModelAndView mav = new ModelAndView("realestate/index");
 		List<Imovel> imoveis = imovelService.genericQuery(q);
 		mav.addObject("imoveis", imoveis);
