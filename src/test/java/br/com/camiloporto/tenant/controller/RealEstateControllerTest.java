@@ -35,8 +35,6 @@ import br.com.camiloporto.tenant.search.ImovelElasticSearchRepository;
 @ActiveProfiles("unit-test")
 public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 	
-//	@Autowired
-//	private ImovelRepository imovelRepository;
 	
 	@Autowired
 	private ImovelElasticSearchRepository searchRepository;
@@ -62,6 +60,11 @@ public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 		node.client().prepareDeleteByQuery(qb.toString())
 				.setQuery(qb.toString()).setIndices("imoveis").execute()
 				.actionGet();
+	}
+	
+	@Test
+	public void deveInserirNovoImovel() {
+		Assert.fail("Implementar Teste");
 	}
 	
 	@Test
