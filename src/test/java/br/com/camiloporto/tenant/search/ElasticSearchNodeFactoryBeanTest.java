@@ -1,6 +1,17 @@
 package br.com.camiloporto.tenant.search;
 
+import io.searchbox.client.JestClient;
+import io.searchbox.client.JestClientFactory;
+import io.searchbox.client.JestResult;
+import io.searchbox.client.config.ClientConfig;
+import io.searchbox.client.config.ClientConstants;
+import io.searchbox.indices.CreateIndex;
+import io.searchbox.indices.IndicesExists;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 
 import org.elasticsearch.node.Node;

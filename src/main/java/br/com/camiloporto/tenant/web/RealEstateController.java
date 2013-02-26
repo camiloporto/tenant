@@ -1,13 +1,16 @@
 package br.com.camiloporto.tenant.web;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.camiloporto.tenant.model.Imovel;
@@ -48,6 +51,16 @@ public class RealEstateController {
 		mav.addObject("imoveis", imoveis);
 		
 		return mav;
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public HashMap<String,String> index(Imovel i) {
+		Imovel indexed = imovelService.saveImovel(i);
+		HashMap<String, String> jsonResponseMap = new HashMap<String, String>();
+		jsonResponseMap.put("status", "ok");
+		jsonResponseMap.put("id", indexed.getId());
+		return jsonResponseMap;
 	}
 
 }

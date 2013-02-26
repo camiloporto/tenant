@@ -1,11 +1,16 @@
 package br.com.camiloporto.tenant.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import java.util.List;
 
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.node.Node;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -25,6 +30,8 @@ import org.testng.annotations.Test;
 import br.com.camiloporto.tenant.builder.ImovelBuilder;
 import br.com.camiloporto.tenant.model.Imovel;
 import br.com.camiloporto.tenant.search.ImovelElasticSearchRepository;
+
+import com.jayway.jsonpath.JsonPath;
 
 @ContextConfiguration(locations = { 
 		"/META-INF/spring/applicationContext.xml",
@@ -63,8 +70,34 @@ public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 	}
 	
 	@Test
-	public void deveInserirNovoImovel() {
-		Assert.fail("Implementar Teste");
+	public void deveInserirNovoImovel() throws Exception {
+		Imovel i = new ImovelBuilder()
+			.doTipo("Apartamento")
+			.naCidade("Joao Pessoa")
+			.noEstado("PB")
+			.noBairro("Manaira")
+			.naRua("Aluisio Franca")
+			.create();
+	
+		MvcResult result = mockMvc.perform(
+			post("/realestates")
+				.param("tipo", i.getTipo())
+				.param("cidade", i.getCidade())
+				.param("estado", i.getEstado())
+				.param("bairro", i.getBairro())
+				.param("rua", i.getRua())
+				.accept(MediaType.APPLICATION_JSON))
+			.andExpect(status().isOk())
+			.andExpect(jsonPath("$.status").value("ok"))
+			.andExpect(jsonPath("$.id").exists())
+			.andReturn();
+		
+		String response = result.getResponse().getContentAsString();
+		String imovelId = JsonPath.read(response, "$.id");
+		
+		Imovel indexed = searchRepository.findById(imovelId);
+		Assert.assertNotNull(indexed, "imovel deveria ter sido encontrado");
+	
 	}
 	
 	@Test
