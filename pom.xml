@@ -15,6 +15,12 @@
         <spring.version>3.2.0.RELEASE</spring.version>
     </properties>
     <repositories>
+    	<!-- Repositorio do Jest - REST Client do ElasticSearch -->
+    	<repository>
+		   <id>sonatype</id>
+		   <name>Sonatype Groups</name>
+		   <url>https://oss.sonatype.org/content/groups/public/</url>
+		</repository>
         <repository>
             <id>spring-maven-release</id>
             <name>Spring Maven Release Repository</name>
@@ -49,13 +55,36 @@
         </pluginRepository>
     </pluginRepositories>
     <dependencies>
-    	<!-- Search Engine Dependency - Compass -->
+    	<!-- Search Engine Dependency -->
+    	<dependency>
+		  <groupId>io.searchbox</groupId>
+		  <artifactId>jest</artifactId>
+		  <version>0.0.3</version>
+		</dependency>
     	<dependency>
 		  <groupId>org.elasticsearch</groupId>
 		  <artifactId>elasticsearch</artifactId>
 		  <version>0.20.4</version>
 		</dependency>
-    	<!--  -->
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+			<version>0.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- 
+    	<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path-parent</artifactId>
+			<version>0.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		 -->
+    	<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.12</version>
+		</dependency>
     	<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>

@@ -30,9 +30,6 @@ public class ImovelServiceTest extends AbstractTestNGSpringContextTests {
 	@Autowired
 	private Node node;
 
-//	@Autowired
-//	private ImovelRepository repository;
-	
 	@Autowired
 	private ImovelElasticSearchRepository repository;
 
@@ -42,6 +39,20 @@ public class ImovelServiceTest extends AbstractTestNGSpringContextTests {
 		node.client().prepareDeleteByQuery(qb.toString())
 				.setQuery(qb.toString()).setIndices("imoveis").execute()
 				.actionGet();
+	}
+	
+	@Test
+	public void deveIndexarNovoImovel() {
+		Imovel i1 = new ImovelBuilder().doTipo("Apartamento").noEstado("RN")
+				.naCidade("Natal").noBairro("Lagoa Nova").naRua("Tereza Campos")
+				.create();
+		Imovel saved = service.saveImovel(i1);
+		
+		Imovel retrieved = service.findImovel(saved.getId());
+		Assert.assertNotNull(retrieved, "deveria recuperar imovel salvo");
+		Assert.assertEquals(retrieved.getRua(), "Tereza Campos",
+				"rua do imovel diferente do esperado");
+		
 	}
 
 	@Test
