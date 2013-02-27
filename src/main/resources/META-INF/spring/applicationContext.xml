@@ -51,6 +51,28 @@
         <context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
     </context:component-scan>
     
+    <bean class="java.util.LinkedHashSet" id="serverList">
+	    <constructor-arg>
+	    	<list>
+	    		<value>http://localhost:9200</value>
+	    	</list>
+		</constructor-arg>
+	</bean>
+    
+    <bean id="jestClientFactory" class="io.searchbox.client.JestClientFactory">
+	    	<property name="clientConfig">
+	    		<bean class="io.searchbox.client.config.ClientConfig">
+	    			<property name="properties">
+	    				<map>
+	    					<entry key="serverList">
+	    						<ref bean="serverList"/>
+	    					</entry>
+	    				</map>
+	    			</property>
+	    		</bean>
+	    	</property>
+	    </bean>
+    
     <!-- ElasticSearch Client FactoryBean -->
     <beans profile="machine-local">
 	    <bean class="br.com.camiloporto.tenant.search.ElasticSearchTransportClientFactoryBean" id="elasticSearchClient">
@@ -101,6 +123,18 @@
 	    			<value>imoveis/imovel</value>
 	    		</list>
 	    	</property>
+	    </bean>
+	    
+	    <bean class="java.util.LinkedHashSet" id="serverList">
+	    	<constructor-arg>
+	    		<list>
+	    			<value>http://localhost:9200</value>
+	    		</list>
+	    	</constructor-arg>
+	    </bean>
+	    
+	    <bean id="jestClient" factory-bean="jestClientFactory" factory-method="getObject" destroy-method="shutdownClient">
+	    	
 	    </bean>
     	
 	</beans>

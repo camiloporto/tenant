@@ -1,9 +1,6 @@
 package br.com.camiloporto.tenant.search;
 
 import io.searchbox.client.JestClient;
-import io.searchbox.client.JestClientFactory;
-import io.searchbox.client.config.ClientConfig;
-import io.searchbox.client.config.ClientConstants;
 import io.searchbox.indices.CreateIndex;
 import io.searchbox.indices.DeleteIndex;
 import io.searchbox.indices.PutMapping;
@@ -12,12 +9,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -25,14 +24,18 @@ import org.testng.annotations.Test;
 import br.com.camiloporto.tenant.builder.ImovelBuilder;
 import br.com.camiloporto.tenant.model.Imovel;
 
-public class ImovelElasticSearchRestRepositoryTest {
+@ContextConfiguration(locations = {"/META-INF/spring/applicationContext.xml", "/META-INF/spring/applicationContext-jpa.xml"})
+@ActiveProfiles("unit-test")
+public class ImovelElasticSearchRestRepositoryTest extends AbstractTestNGSpringContextTests {
 
 	private String mappingPath = "src/main/resources/elasticsearch/imoveis/imovel.json";
 	
 	private String mappingJSON;
 	
+	@Autowired
 	private ImovelElasticSearchRestRepository repository;
 	
+	@Autowired
 	private JestClient jestClient;
 
 	private void readMappingFile() throws FileNotFoundException {
@@ -49,22 +52,6 @@ public class ImovelElasticSearchRestRepositoryTest {
 	@BeforeClass
 	public void initRepository() throws FileNotFoundException {
 		readMappingFile();
-		repository = new ImovelElasticSearchRestRepository();
-		repository.setIndexName("imoveis");
-		repository.setTypeName("imovel");
-
-		ClientConfig clientConfig = new ClientConfig();
-		LinkedHashSet<String> servers = new LinkedHashSet<String>();
-		servers.add("http://localhost:9200");
-		clientConfig.getProperties().put(ClientConstants.SERVER_LIST, servers);
-		clientConfig.getProperties().put(ClientConstants.IS_MULTI_THREADED,
-				true);
-
-		// Construct a new Jest client according to configuration via factory
-		JestClientFactory factory = new JestClientFactory();
-		factory.setClientConfig(clientConfig);
-		jestClient = factory.getObject();
-		repository.setJestClient(jestClient);
 	}
 	
 	@BeforeMethod
@@ -79,13 +66,6 @@ public class ImovelElasticSearchRestRepositoryTest {
 		jestClient.execute(putMapping);
 	}
 	
-	@AfterClass
-	public void closeJestClient() {
-		System.out
-				.println("ImovelElasticSearchRestRepositoryTest.closeJestClient()");
-		jestClient.shutdownClient();
-	}
-
 	@Test
 	public void deveIndexarUmImovel() throws Exception {
 		Imovel i = new ImovelBuilder().doTipo("apartamento").noEstado("RN")

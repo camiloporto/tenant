@@ -18,14 +18,18 @@ import net.minidev.json.JSONObject;
 
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import br.com.camiloporto.tenant.model.Imovel;
 
 import com.jayway.jsonpath.JsonPath;
 
+@Component
 public class ImovelElasticSearchRestRepository implements
 		ImovelSearchRepository {
 	
+	@Autowired
 	private JestClient jestClient;
 	
 	private String indexName = "imoveis";
