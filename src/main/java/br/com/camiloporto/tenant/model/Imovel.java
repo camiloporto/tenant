@@ -41,7 +41,7 @@ public class Imovel {
     private String complemento;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(style = "M-")
+    @DateTimeFormat(style = "dd-MMM-yyyy HH:mm:ss")
     private Date ultimaAtualizacao;
 
     @PrePersist
@@ -49,4 +49,5 @@ public class Imovel {
     public void updateUltimaAtualiacao() {
         ultimaAtualizacao = Calendar.getInstance().getTime();
     }
+    
 }
