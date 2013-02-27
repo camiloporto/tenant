@@ -54,7 +54,7 @@
     <bean class="java.util.LinkedHashSet" id="serverList">
 	    <constructor-arg>
 	    	<list>
-	    		<value>http://localhost:9200</value>
+	    		<value>http://2a58d88d1bdfd1ec8dae3270ea935f07-us-east-1.foundcluster.com:9200</value>
 	    	</list>
 		</constructor-arg>
 	</bean>
