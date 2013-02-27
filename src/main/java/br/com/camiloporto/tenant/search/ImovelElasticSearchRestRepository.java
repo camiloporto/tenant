@@ -6,13 +6,22 @@ import io.searchbox.client.JestResult;
 import io.searchbox.core.Get;
 import io.searchbox.core.Index;
 import io.searchbox.core.Search;
+import io.searchbox.core.search.sort.Sort;
+import io.searchbox.core.search.sort.Sort.Sorting;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import net.minidev.json.JSONArray;
+import net.minidev.json.JSONObject;
 
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 
 import br.com.camiloporto.tenant.model.Imovel;
+
+import com.jayway.jsonpath.JsonPath;
 
 public class ImovelElasticSearchRestRepository implements
 		ImovelSearchRepository {
@@ -37,7 +46,8 @@ public class ImovelElasticSearchRestRepository implements
 
 	@Override
 	public Imovel index(Imovel i) throws Exception {
-		Index index = new Index.Builder(i).index(indexName).type(typeName).build();
+		String json = i.toJson();
+		Index index = new Index.Builder(json).index(indexName).type(typeName).build();
 		index.addParameter(Parameters.REFRESH, true);
 		JestResult result = jestClient.execute(index);
 		if(result.isSucceeded()) {
@@ -53,20 +63,59 @@ public class ImovelElasticSearchRestRepository implements
 	public Imovel findById(String id) throws Exception {
 		Get get = new Get.Builder(id).index(indexName).type(typeName).build();
 		JestResult result = jestClient.execute(get);
-		return result.getSourceAsObject(Imovel.class);
+		Imovel retorno = null;
+		if(result.isSucceeded()) {
+			String json = result.getJsonString();
+			retorno = createImovelFromHit((JSONObject) JsonPath.read(json, "$."));
+		}
+		
+		return retorno;
 	}
 
 	@Override
 	public List<Imovel> genericQuery(String query) throws Exception {
 		QueryBuilder qb = QueryBuilders.boolQuery()
         	.must(QueryBuilders.queryString(query));
-		System.out.println("ImovelElasticSearchRestRepository.genericQuery() " + qb.toString());
 		Search search = new Search(Search.createQueryWithBuilder(qb.toString()));
 		search.addIndex(indexName);
 		search.addType(typeName);            
-
+		
+		return executeQuery(search);
+		
+	}
+	
+	private List<Imovel> executeQuery(Search search) throws Exception {
 		JestResult result = jestClient.execute(search);
-		return result.getSourceAsObjectList(Imovel.class);
+		return fromHitsToImoveis(result);
+	}
+	
+	private List<Imovel> fromHitsToImoveis(JestResult result) {
+		JSONArray hits = JsonPath.read(result.getJsonString(), "$.hits.hits[*]");
+		List<Imovel> imovelList = new ArrayList<Imovel>();
+		for (Object hit : hits) {
+			imovelList.add(createImovelFromHit((JSONObject) hit));
+		}
+		return imovelList;
+		
+	}
+
+	private Imovel createImovelFromHit(JSONObject hit) {
+		String hitId = (String) hit.get("_id");
+		JSONObject source = (JSONObject) hit.get("_source");
+		Imovel i = Imovel.fromJsonToImovel(source.toJSONString());
+		i.setId(hitId);
+		return i;
+	}
+
+	@Override
+	public List<Imovel> findAll() throws Exception {
+		QueryBuilder qb = QueryBuilders.matchAllQuery();
+		Sort sort = new Sort("ultimaAtualizacao", Sorting.DESC);
+		Search search = new Search(Search.createQueryWithBuilder(qb.toString()), Arrays.asList(sort));
+		search.addIndex(indexName);
+		search.addType(typeName);
+		
+		return executeQuery(search);
 	}
 
 }

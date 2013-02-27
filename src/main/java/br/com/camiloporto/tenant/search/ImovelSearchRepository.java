@@ -11,5 +11,7 @@ public interface ImovelSearchRepository {
 	Imovel findById(String id) throws Exception;
 
 	List<Imovel> genericQuery(String string) throws Exception;
+	
+	List<Imovel> findAll() throws Exception;
 
 }
