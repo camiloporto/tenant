@@ -9,8 +9,9 @@
         directory. The located property files are parsed and their values can
         then be used within application context files in the form of
         ${propertyKey}.
-    -->
+    
     <context:property-placeholder location="classpath*:META-INF/spring/database*.properties" />
+    -->
     <!--
         Turn on AspectJ @Configurable support. As a result, any time you
         instantiate an object, Spring will attempt to perform dependency
@@ -51,10 +52,13 @@
         <context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
     </context:component-scan>
     
+    <bean id="jestClient" factory-bean="jestClientFactory" factory-method="getObject" destroy-method="shutdownClient" />
+	    	
     <bean class="java.util.LinkedHashSet" id="serverList">
 	    <constructor-arg>
 	    	<list>
 	    		<value>http://2a58d88d1bdfd1ec8dae3270ea935f07-us-east-1.foundcluster.com:9200</value>
+<!-- 	    		<value>http://localhost:9200</value> -->
 	    	</list>
 		</constructor-arg>
 	</bean>
@@ -73,7 +77,7 @@
 	    	</property>
 	    </bean>
     
-    <!-- ElasticSearch Client FactoryBean -->
+    <!-- ElasticSearch Client FactoryBean 
     <beans profile="machine-local">
 	    <bean class="br.com.camiloporto.tenant.search.ElasticSearchTransportClientFactoryBean" id="elasticSearchClient">
 	    	<property name="mappingRoot" value="/elasticsearch" />
@@ -90,8 +94,10 @@
 	    	</property>
 	    </bean>
     </beans>
+    -->
     <!-- Beans para usar H2 In Memory --> 
     <beans profile="unit-test">
+    	<!-- RETIRADO CONFIGURACAO DE BANCO DE DADOS
 	    <context:property-placeholder location="classpath*:META-INF/spring/database-h2.properties"/>
 	    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">
 	        <property name="persistenceUnitName" value="persistenceUnit"/>
@@ -110,7 +116,7 @@
 	        <property name="numTestsPerEvictionRun" value="3"/>
 	        <property name="minEvictableIdleTimeMillis" value="1800000"/>
     	</bean>
-    	
+    	 -->
     	 <!-- ElasticSearch Node FactoryBean -->
 	    <bean class="br.com.camiloporto.tenant.search.ElasticSearchNodeFactoryBean" id="elasticSearchNode">
 	    	<property name="configLocation" value="classpath:META-INF/elasticsearch.properties"/>
@@ -124,6 +130,8 @@
 	    		</list>
 	    	</property>
 	    </bean>
+	    <bean id="imovelElasticSearchRepository" class="br.com.camiloporto.tenant.search.ImovelElasticSearchRepository">
+	    </bean>
 	    
 	    <bean class="java.util.LinkedHashSet" id="serverList">
 	    	<constructor-arg>
@@ -133,16 +141,14 @@
 	    	</constructor-arg>
 	    </bean>
 	    
-	    <bean id="jestClient" factory-bean="jestClientFactory" factory-method="getObject" destroy-method="shutdownClient">
-	    	
-	    </bean>
-    	
 	</beans>
 	<beans profile="integration-test">
+		<!-- RETIRADA CONFIGURACAO DE BANCO 
 	    <context:property-placeholder location="classpath*:META-INF/spring/database.properties"/>
 	    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">
 	        <property name="persistenceUnitName" value="persistenceUnit"/>
 	        <property name="dataSource" ref="dataSource"/>
 	    </bean>
+	     -->
 	</beans>
 </beans>
