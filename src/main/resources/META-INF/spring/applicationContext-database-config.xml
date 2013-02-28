@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context" xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd         http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
-    
+
+	<!-- RETIRADA CONFIGURAÇÃO DE BANCO
     <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
@@ -9,10 +10,10 @@
         <property name="persistenceUnitName" value="persistenceUnit"/>
         <property name="dataSource" ref="dataSource"/>
     </bean>
-    
+     -->
     <!-- Beans for Heroku Database Configuration -->
     <beans profile="heroku">
-    	<!-- ElasticSearch Client FactoryBean -->
+    	<!-- ElasticSearch Client FactoryBean 
 	    <bean class="br.com.camiloporto.tenant.search.ElasticSearchTransportClientFactoryBean" id="elasticSearchClient">
 	    	<property name="mappingRoot" value="/elasticsearch" />
 	    	<property name="mappings">
@@ -23,10 +24,10 @@
 	    	<property name="nodes">
 	    		<list>
 	    			<value>48a8085df7ef5888f3ff4b660551475a-us-east-1.foundcluster.com:9200</value>
-<!-- 						<value>localhost:9300</value> -->
 	    		</list>
 	    	</property>
     	</bean>
+    	
     	<bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
 	        <property name="driverClassName" value="${database.driverClassName}"/>
 	        <property name="url" value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() }"/>
@@ -39,9 +40,10 @@
 	        <property name="numTestsPerEvictionRun" value="3"/>
 	        <property name="minEvictableIdleTimeMillis" value="1800000"/>
     	</bean>
+    	
     	<bean class="java.net.URI" id="dbUrl">
     		<constructor-arg value="${DATABASE_URL}"/>
-<!-- 		    <constructor-arg value="postgres://camilo:porto@localhost:5432/tenant"/> -->
 		</bean>
+		-->
     </beans>
 </beans>

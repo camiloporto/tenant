@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.camiloporto.tenant.model.Imovel;
 
-@Component
+//@Component
 public class ImovelElasticSearchRepository implements ImovelSearchRepository {
 	
 	@Autowired
