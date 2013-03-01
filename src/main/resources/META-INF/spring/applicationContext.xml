@@ -52,6 +52,14 @@
         <context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
     </context:component-scan>
     
+    <!-- Cloudinary service -->
+    <bean id="cloudinaryService" class="com.cloudinary.Cloudinary">
+    	<constructor-arg>
+    		<value>cloudinary://315679192766649:4G3WRttWExSy0ovHNx0HCqJKtdQ@inquilinus</value>
+    	</constructor-arg>
+    </bean>
+    
+    <!-- ElasticSearch Jest Client -->
     <bean id="jestClient" factory-bean="jestClientFactory" factory-method="getObject" destroy-method="shutdownClient" />
 	    	
     <bean class="java.util.LinkedHashSet" id="serverList">
