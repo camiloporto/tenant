@@ -55,6 +55,19 @@
         </pluginRepository>
     </pluginRepositories>
     <dependencies>
+    	<!-- Cloudinary -->
+    	<dependency>
+		  <groupId>com.cloudinary</groupId>
+		  <artifactId>cloudinary-java</artifactId>
+		  <version>0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		            
+    	<!-- End  -->
     	<!-- Search Engine Dependency -->
     	<dependency>
 		  <groupId>io.searchbox</groupId>
