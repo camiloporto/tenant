@@ -17,7 +17,6 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-//@RooJpaEntity
 @RooSerializable
 @RooJson
 public class Imovel {

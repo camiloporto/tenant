@@ -11,6 +11,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import br.com.camiloporto.tenant.model.ImovelMedia;
+
 import com.cloudinary.Cloudinary;
 import com.cloudinary.Transformation;
 
@@ -43,5 +45,15 @@ public class CloudinaryServiceTest extends AbstractTestNGSpringContextTests {
 	public void deveFazerUploadDeImagem() throws IOException {
 		Map<String, String> result = cloudinary.uploader().upload("src/test/resources/br/com/camiloporto/tenant/image/homer.jpg", cloudinary.emptyMap());
 		System.out.println(result);
+	}
+	
+	@Test
+	public void name() {
+		ImovelMedia im = new ImovelMedia();
+		im.setId("hashId");
+		im.setImovelId("imovelHash");
+		im.setFileName("homer.jpg");
+		im.setFileExtension("jpg");
+		System.out.println(im.toJson());
 	}
 }
