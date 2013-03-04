@@ -47,6 +47,7 @@ public class Imovel {
     @PreUpdate
     public void updateUltimaAtualiacao() {
         ultimaAtualizacao = Calendar.getInstance().getTime();
+        //FIXME corrigir essa atualziacao. Colocar no negocio
     }
     
 }

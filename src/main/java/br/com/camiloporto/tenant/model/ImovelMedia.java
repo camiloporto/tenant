@@ -16,5 +16,5 @@ public class ImovelMedia {
 	private String fileName;
 	
 	private String fileExtension;
-
+	
 }

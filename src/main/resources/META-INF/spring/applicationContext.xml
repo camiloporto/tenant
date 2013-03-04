@@ -125,7 +125,7 @@
 	        <property name="minEvictableIdleTimeMillis" value="1800000"/>
     	</bean>
     	 -->
-    	 <!-- ElasticSearch Node FactoryBean -->
+    	 <!-- ElasticSearch Node FactoryBean 
 	    <bean class="br.com.camiloporto.tenant.search.ElasticSearchNodeFactoryBean" id="elasticSearchNode">
 	    	<property name="configLocation" value="classpath:META-INF/elasticsearch.properties"/>
 	    </bean>
@@ -140,7 +140,7 @@
 	    </bean>
 	    <bean id="imovelElasticSearchRepository" class="br.com.camiloporto.tenant.search.ImovelElasticSearchRepository">
 	    </bean>
-	    
+	    -->
 	    <bean class="java.util.LinkedHashSet" id="serverList">
 	    	<constructor-arg>
 	    		<list>
