@@ -3,20 +3,15 @@ package br.com.camiloporto.tenant.search;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import br.com.camiloporto.tenant.AbstractElasticSearchAwareTest;
 import br.com.camiloporto.tenant.builder.ImovelBuilder;
 import br.com.camiloporto.tenant.model.Imovel;
 import br.com.camiloporto.tenant.model.ImovelMedia;
 
-@ContextConfiguration(locations = { "/META-INF/spring/applicationContext.xml",
-		"/META-INF/spring/applicationContext-jpa.xml" })
-@ActiveProfiles("unit-test")
-public class MediaElasticSearchRestRepositoryTest extends AbstractTestNGSpringContextTests {
+public class MediaElasticSearchRestRepositoryTest extends AbstractElasticSearchAwareTest {
 	
 	@Autowired
 	private ImovelElasticSearchRestRepository imovelRepository;

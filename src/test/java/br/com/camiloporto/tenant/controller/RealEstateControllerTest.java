@@ -6,13 +6,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.List;
 
-import org.elasticsearch.index.query.QueryBuilder;
-import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -23,9 +19,9 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import br.com.camiloporto.tenant.AbstractElasticSearchAwareTest;
 import br.com.camiloporto.tenant.builder.ImovelBuilder;
 import br.com.camiloporto.tenant.model.Imovel;
 import br.com.camiloporto.tenant.model.ImovelMedia;
@@ -35,14 +31,9 @@ import br.com.camiloporto.tenant.search.MediaElasticSearchRestRepository;
 import com.jayway.jsonpath.JsonPath;
 
 @ContextConfiguration(locations = { 
-		"/META-INF/spring/applicationContext.xml",
-		"/META-INF/spring/applicationContext-jpa.xml",
-		"/META-INF/spring/applicationContext-database-config.xml",
 		"/META-INF/spring/webmvc-config.xml"})
 @WebAppConfiguration
-@ActiveProfiles("unit-test")
-public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
-	
+public class RealEstateControllerTest extends AbstractElasticSearchAwareTest {
 	
 	@Autowired
 	private ImovelSearchRepository searchRepository;
@@ -55,22 +46,10 @@ public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 	@Autowired
 	private MediaElasticSearchRestRepository mediaRepository;
 	
-//	@Autowired
-//	private Node node;
-	
-	
 	@BeforeClass
 	public void setUpMockMvc() {
 		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
 		
-	}
-	
-	@BeforeMethod
-	public void clearIndexData() {
-		QueryBuilder qb = QueryBuilders.matchAllQuery();
-//		node.client().prepareDeleteByQuery(qb.toString())
-//				.setQuery(qb.toString()).setIndices("imoveis").execute()
-//				.actionGet();
 	}
 	
 	@Test

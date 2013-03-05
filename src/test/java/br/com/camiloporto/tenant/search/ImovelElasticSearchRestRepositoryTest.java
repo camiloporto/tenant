@@ -1,70 +1,21 @@
 package br.com.camiloporto.tenant.search;
 
-import io.searchbox.client.JestClient;
-import io.searchbox.indices.CreateIndex;
-import io.searchbox.indices.DeleteIndex;
-import io.searchbox.indices.PutMapping;
-
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import br.com.camiloporto.tenant.AbstractElasticSearchAwareTest;
 import br.com.camiloporto.tenant.builder.ImovelBuilder;
 import br.com.camiloporto.tenant.model.Imovel;
 
-@ContextConfiguration(locations = {"/META-INF/spring/applicationContext.xml", "/META-INF/spring/applicationContext-jpa.xml"})
-@ActiveProfiles("unit-test")
-public class ImovelElasticSearchRestRepositoryTest extends AbstractTestNGSpringContextTests {
+public class ImovelElasticSearchRestRepositoryTest extends AbstractElasticSearchAwareTest {
 
-	private String mappingPath = "src/main/resources/elasticsearch/imoveis/imovel.json";
-	
-	private String mappingJSON;
-	
 	@Autowired
 	private ImovelElasticSearchRestRepository repository;
-	
-	@Autowired
-	private JestClient jestClient;
-
-	private void readMappingFile() throws FileNotFoundException {
-		File f =  new File(mappingPath);
-		Scanner s = new Scanner(f);
-		StringBuilder sb = new StringBuilder();
-		while(s.hasNext()) {
-			sb.append(s.next());
-		}
-		mappingJSON = sb.toString();
-		s.close();
-	}
-	
-	@BeforeClass
-	public void initRepository() throws FileNotFoundException {
-		readMappingFile();
-	}
-	
-	@BeforeMethod
-	public void clearIndexData() throws Exception {
-		DeleteIndex di = new DeleteIndex("imoveis");
-		CreateIndex ci = new CreateIndex("imoveis");
-		jestClient.execute(di);
-		jestClient.execute(ci);
-		PutMapping putMapping = new PutMapping(
-				"imoveis", "imovel",
-                mappingJSON);
-		jestClient.execute(putMapping);
-	}
 	
 	@Test
 	public void deveIndexarUmImovel() throws Exception {

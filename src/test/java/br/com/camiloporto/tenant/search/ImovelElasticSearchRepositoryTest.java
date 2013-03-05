@@ -4,55 +4,21 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import org.elasticsearch.cluster.ClusterState;
-import org.elasticsearch.cluster.metadata.IndexMetaData;
-import org.elasticsearch.index.query.QueryBuilder;
-import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.node.Node;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import br.com.camiloporto.tenant.AbstractElasticSearchAwareTest;
 import br.com.camiloporto.tenant.builder.ImovelBuilder;
 import br.com.camiloporto.tenant.model.Imovel;
 
-@ContextConfiguration(locations = {"/META-INF/spring/applicationContext.xml", "/META-INF/spring/applicationContext-jpa.xml"})
-@ActiveProfiles("unit-test")
-public class ImovelElasticSearchRepositoryTest extends AbstractTestNGSpringContextTests {
+public class ImovelElasticSearchRepositoryTest extends AbstractElasticSearchAwareTest {
 	
 	
 	@Autowired
 	private ImovelElasticSearchRepository repository;
 	
-	@Autowired
-	private Node node;
-	
-	@BeforeMethod
-	public void clearIndexData() {
-		QueryBuilder qb = QueryBuilders.matchAllQuery();
-		node.client()
-			.prepareDeleteByQuery(qb.toString())
-			.setQuery(qb.toString())
-			.setIndices("imoveis")
-			.execute()
-			.actionGet();
-	}
-	
-	@BeforeMethod
-	public void printIndexMappings() {
-		ClusterState state = node.client().admin().cluster().prepareState().setFilterIndices("imoveis").execute().actionGet().getState();
-		IndexMetaData imd = state.getMetaData().index("imoveis");
-		for (String m : imd.mappings().keySet()) {
-			System.out
-					.println("ImovelElasticSearchRepositoryTest.printIndexMappings() " +m);
-		}
-	}
-	
-	@Test
+	@Test(enabled=false)
 	public void deveIndexarUmImovel() {
 		Imovel i = new ImovelBuilder()
 			.doTipo("apartamento")
@@ -74,7 +40,7 @@ public class ImovelElasticSearchRepositoryTest extends AbstractTestNGSpringConte
 		
 	}
 	
-	@Test
+	@Test(enabled=false)
 	public void deveBuscarImovelPorId() {
 		Imovel i = new ImovelBuilder()
 			.doTipo("apartamento")
@@ -95,7 +61,7 @@ public class ImovelElasticSearchRepositoryTest extends AbstractTestNGSpringConte
 		
 	}
 	
-	@Test
+	@Test(enabled=false)
 	public void deveRetornarNullQuandoNaoEncontrarImovelPorId() {
 		final String idInexistente = "abcdef";
 		
@@ -106,7 +72,7 @@ public class ImovelElasticSearchRepositoryTest extends AbstractTestNGSpringConte
 		
 	}
 	
-	@Test
+	@Test(enabled=false)
 	public void deveFazerFullTextSearchBasicaEmImovel() {
 		Imovel i = new ImovelBuilder()
 			.doTipo("apartamento")
@@ -138,7 +104,7 @@ public class ImovelElasticSearchRepositoryTest extends AbstractTestNGSpringConte
 		
 	}
 	
-	@Test
+	@Test(enabled=false)
 	public void deveRecuperarTodos() {
 		Imovel i = new ImovelBuilder()
 			.doTipo("apartamento")
