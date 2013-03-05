@@ -55,6 +55,7 @@
     <!-- Cloudinary service -->
     <bean id="cloudinaryService" class="com.cloudinary.Cloudinary">
     	<constructor-arg>
+<!--     		<value>#{systemEnvironment['CLOUDINARY_URL']}</value> -->
     		<value>cloudinary://315679192766649:4G3WRttWExSy0ovHNx0HCqJKtdQ@inquilinus</value>
     	</constructor-arg>
     </bean>
@@ -65,8 +66,8 @@
     <bean class="java.util.LinkedHashSet" id="serverList">
 	    <constructor-arg>
 	    	<list>
-	    		<value>http://2a58d88d1bdfd1ec8dae3270ea935f07-us-east-1.foundcluster.com:9200</value>
-<!-- 	    		<value>http://localhost:9200</value> -->
+<!-- 	    		<value>http://2a58d88d1bdfd1ec8dae3270ea935f07-us-east-1.foundcluster.com:9200</value> -->
+	    		<value>#{systemEnvironment['FOUNDELASTICSEARCH_URL']}</value>
 	    	</list>
 		</constructor-arg>
 	</bean>

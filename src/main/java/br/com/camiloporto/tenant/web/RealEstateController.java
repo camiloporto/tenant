@@ -27,6 +27,8 @@ import br.com.camiloporto.tenant.service.ImovelService;
 @Controller
 public class RealEstateController {
 	
+	private static final String JPEG = "jpg";
+
 	@Autowired
 	private ImovelService imovelService;
 	
@@ -81,8 +83,11 @@ public class RealEstateController {
 		List<String> result = new ArrayList<String>();
 		for (ImovelMedia imovelMedia : medias) {
 			Transformation t = new Transformation();
-			t.width(mediaWidth).height(mediaHeight).crop("scale");
-			String url = cloudinary.url().format(imovelMedia.getFileExtension()).transformation(t).generate(imovelMedia.getId());
+			t.height(mediaHeight).crop("scale");
+			String url = cloudinary.url()
+					.format(JPEG)
+					.transformation(t).
+					generate(imovelMedia.getId());
 			result.add(url);
 		}
 		return result;
