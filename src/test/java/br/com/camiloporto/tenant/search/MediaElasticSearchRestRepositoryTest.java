@@ -65,4 +65,18 @@ public class MediaElasticSearchRestRepositoryTest extends AbstractTestNGSpringCo
 		ImovelMedia saved = result.get(0);
 		Assert.assertEquals(saved.getId(), mediaIndexed.getId(), "media recuperada diferente do esperado");
 	}
+	
+	@Test
+	public void deveRetornarListaVaziaSeNaoExistirMediaParaUmImovel() throws Exception {
+		
+		Imovel i = new ImovelBuilder().doTipo("apartamento").noEstado("RN")
+				.naCidade("Natal").noBairro("Lagoa Nova")
+				.naRua("Tereza Campos").comComplemento("Lifestyle - 302")
+				.create();
+		Imovel indexed = imovelRepository.index(i);
+		
+		List<ImovelMedia> result = repository.findByImovelId(indexed.getId());
+		
+		Assert.assertEquals(result.size(), 0, "numero de medias retornadas diferente do esperado");
+	}
 }
