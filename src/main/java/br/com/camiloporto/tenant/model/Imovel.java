@@ -17,7 +17,6 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-//@RooJpaEntity
 @RooSerializable
 @RooJson
 public class Imovel {
@@ -48,6 +47,7 @@ public class Imovel {
     @PreUpdate
     public void updateUltimaAtualiacao() {
         ultimaAtualizacao = Calendar.getInstance().getTime();
+        //FIXME corrigir essa atualziacao. Colocar no negocio
     }
     
 }

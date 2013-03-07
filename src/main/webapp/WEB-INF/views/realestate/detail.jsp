@@ -11,8 +11,8 @@
 	margin: 5em 0;
 }
 .carousel img {
-    width : 430px;
-    height : 300px;
+/*     width : 430px; */
+/*     height : 300px; */
     margin : 0 auto;
 }
 .thumbup {
@@ -49,6 +49,14 @@
 			<div id="myCarousel" class="carousel slide">
 				<!-- Carousel items -->
 				<div class="carousel-inner">
+					 <c:forEach items="${medias}" var="mediaURL">
+					 	<div class="item">
+							<img
+								src="${mediaURL}"
+								alt=""></img>
+						</div>
+					 </c:forEach>
+					<!-- 
 					<div class="active item">
 						<img
 							src="http://www.alugarcasa.org/wp-content/uploads/2012/09/Alugar-apartamento-Dicas-Como-proceder.jpg"
@@ -64,6 +72,7 @@
 							src="http://static.assimsefaz.com.br/images/3/71/994/207134/2/img.jpg"
 							alt=""></img>
 					</div>
+					 -->
 				</div>
 				<!-- Carousel nav -->
 				<a class="carousel-control left" href="#myCarousel"

@@ -4,43 +4,23 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import org.elasticsearch.index.query.QueryBuilder;
-import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.node.Node;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import br.com.camiloporto.tenant.AbstractElasticSearchAwareTest;
 import br.com.camiloporto.tenant.builder.ImovelBuilder;
 import br.com.camiloporto.tenant.model.Imovel;
-import br.com.camiloporto.tenant.search.ImovelElasticSearchRepository;
+import br.com.camiloporto.tenant.search.ImovelSearchRepository;
 
-@ContextConfiguration(locations = { "/META-INF/spring/applicationContext.xml",
-		"/META-INF/spring/applicationContext-jpa.xml" })
-@ActiveProfiles("unit-test")
-public class ImovelServiceTest extends AbstractTestNGSpringContextTests {
+public class ImovelServiceTest extends AbstractElasticSearchAwareTest {
 
 	@Autowired
 	private ImovelService service;
 	
 	@Autowired
-	private Node node;
+	private ImovelSearchRepository repository;
 
-	@Autowired
-	private ImovelElasticSearchRepository repository;
-
-	@BeforeMethod
-	public void clearIndexData() {
-		QueryBuilder qb = QueryBuilders.matchAllQuery();
-		node.client().prepareDeleteByQuery(qb.toString())
-				.setQuery(qb.toString()).setIndices("imoveis").execute()
-				.actionGet();
-	}
-	
 	@Test
 	public void deveIndexarNovoImovel() {
 		Imovel i1 = new ImovelBuilder().doTipo("Apartamento").noEstado("RN")
@@ -57,7 +37,7 @@ public class ImovelServiceTest extends AbstractTestNGSpringContextTests {
 
 	@Test
 	public void deveListarTodosOsImoveisEmOrdemDecrescenteDeDataAtualizacao()
-			throws InterruptedException {
+			throws Exception {
 		final String ruaImovel1 = "Tereza Campos";
 		final String ruaImovel2 = "Av Integracao";
 		Imovel i1 = new ImovelBuilder().doTipo("Apartamento").noEstado("RN")

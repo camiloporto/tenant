@@ -6,14 +6,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.List;
 
-import org.elasticsearch.index.query.QueryBuilder;
-import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.node.Node;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -24,49 +19,37 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import br.com.camiloporto.tenant.AbstractElasticSearchAwareTest;
 import br.com.camiloporto.tenant.builder.ImovelBuilder;
 import br.com.camiloporto.tenant.model.Imovel;
-import br.com.camiloporto.tenant.search.ImovelElasticSearchRepository;
+import br.com.camiloporto.tenant.model.ImovelMedia;
+import br.com.camiloporto.tenant.search.ImovelSearchRepository;
+import br.com.camiloporto.tenant.search.MediaElasticSearchRestRepository;
 
 import com.jayway.jsonpath.JsonPath;
 
 @ContextConfiguration(locations = { 
-		"/META-INF/spring/applicationContext.xml",
-		"/META-INF/spring/applicationContext-jpa.xml",
-		"/META-INF/spring/applicationContext-database-config.xml",
 		"/META-INF/spring/webmvc-config.xml"})
 @WebAppConfiguration
-@ActiveProfiles("unit-test")
-public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
-	
+public class RealEstateControllerTest extends AbstractElasticSearchAwareTest {
 	
 	@Autowired
-	private ImovelElasticSearchRepository searchRepository;
+	private ImovelSearchRepository searchRepository;
 	
 	@Autowired 
 	private WebApplicationContext wac;
 	
 	private MockMvc mockMvc;
-	
+
 	@Autowired
-	private Node node;
-	
+	private MediaElasticSearchRestRepository mediaRepository;
 	
 	@BeforeClass
 	public void setUpMockMvc() {
 		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
 		
-	}
-	
-	@BeforeMethod
-	public void clearIndexData() {
-		QueryBuilder qb = QueryBuilders.matchAllQuery();
-		node.client().prepareDeleteByQuery(qb.toString())
-				.setQuery(qb.toString()).setIndices("imoveis").execute()
-				.actionGet();
 	}
 	
 	@Test
@@ -174,9 +157,16 @@ public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 			.create();
 		searchRepository.index(i);
 		
+		ImovelMedia media = new ImovelMedia();
+		media.setFileExtension("jpg");
+		media.setFileName("homer");
+		media.setImovelId(i.getId());
+		ImovelMedia mediaIndexed = mediaRepository.index(media);
+		
 		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/realestates/" + i.getId()))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(MockMvcResultMatchers.model().attributeExists("imovel"))
+				.andExpect(MockMvcResultMatchers.model().attributeExists("medias"))
 				.andExpect(MockMvcResultMatchers.forwardedUrl("/WEB-INF/views/realestate/detail.jsp"))
 				.andReturn();
 		ModelAndView mav = result.getModelAndView();
@@ -184,6 +174,12 @@ public class RealEstateControllerTest extends AbstractTestNGSpringContextTests {
 		
 		final String expectedRua = "Tereza Campos";
 		Assert.assertEquals(imovel.getRua(), expectedRua, "nome da rua do imovel diferente do esperado");
+		
+		List<String> urlsMedias = (List<String>) mav.getModelMap().get("medias");
+		Assert.assertEquals(urlsMedias.size(), 1, "numero de medias retornadas diferente do esperado");
+		
+		String saved = urlsMedias.get(0);
+		Assert.assertTrue(saved.contains(mediaIndexed.getId()), "url da media gerada parece nao esta OK: " + saved);
 	}
 	
 	@Test

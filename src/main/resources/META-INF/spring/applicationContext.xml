@@ -52,13 +52,22 @@
         <context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
     </context:component-scan>
     
+    <!-- Cloudinary service -->
+    <bean id="cloudinaryService" class="com.cloudinary.Cloudinary">
+    	<constructor-arg>
+<!--     		<value>#{systemEnvironment['CLOUDINARY_URL']}</value> -->
+    		<value>cloudinary://315679192766649:4G3WRttWExSy0ovHNx0HCqJKtdQ@inquilinus</value>
+    	</constructor-arg>
+    </bean>
+    
+    <!-- ElasticSearch Jest Client -->
     <bean id="jestClient" factory-bean="jestClientFactory" factory-method="getObject" destroy-method="shutdownClient" />
 	    	
     <bean class="java.util.LinkedHashSet" id="serverList">
 	    <constructor-arg>
 	    	<list>
-	    		<value>http://2a58d88d1bdfd1ec8dae3270ea935f07-us-east-1.foundcluster.com:9200</value>
-<!-- 	    		<value>http://localhost:9200</value> -->
+<!-- 	    		<value>http://2a58d88d1bdfd1ec8dae3270ea935f07-us-east-1.foundcluster.com:9200</value> -->
+	    		<value>#{systemEnvironment['FOUNDELASTICSEARCH_URL']}</value>
 	    	</list>
 		</constructor-arg>
 	</bean>
@@ -117,7 +126,7 @@
 	        <property name="minEvictableIdleTimeMillis" value="1800000"/>
     	</bean>
     	 -->
-    	 <!-- ElasticSearch Node FactoryBean -->
+    	 <!-- ElasticSearch Node FactoryBean 
 	    <bean class="br.com.camiloporto.tenant.search.ElasticSearchNodeFactoryBean" id="elasticSearchNode">
 	    	<property name="configLocation" value="classpath:META-INF/elasticsearch.properties"/>
 	    </bean>
@@ -132,7 +141,7 @@
 	    </bean>
 	    <bean id="imovelElasticSearchRepository" class="br.com.camiloporto.tenant.search.ImovelElasticSearchRepository">
 	    </bean>
-	    
+	    -->
 	    <bean class="java.util.LinkedHashSet" id="serverList">
 	    	<constructor-arg>
 	    		<list>

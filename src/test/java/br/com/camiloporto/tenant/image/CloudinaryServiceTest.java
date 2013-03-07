@@ -1,28 +1,34 @@
 package br.com.camiloporto.tenant.image;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.Transformation;
 
-public class CloudinaryServiceTest {
+@ContextConfiguration(locations = {"/META-INF/spring/applicationContext.xml"})
+@ActiveProfiles("unit-test")
+public class CloudinaryServiceTest extends AbstractTestNGSpringContextTests {
 	
+	@Autowired
 	private Cloudinary cloudinary;
 	
 	private final String HOMER_PUBLIC_ID = "homer";
 	
 	@BeforeClass
 	public void configCloudinary() {
-		Map<String, String> config = new HashMap<String, String>();
-		config.put("cloud_name", "inquilinus");
-		config.put("api_key", "315679192766649");
-		config.put("api_secret", "4G3WRttWExSy0ovHNx0HCqJKtdQ");
-		cloudinary = new Cloudinary(config);
+		Assert.assertNotNull(cloudinary, "objeto cloudinary deveria de sido injetado");
+		Assert.assertNotNull(cloudinary.getStringConfig("cloud_name"), "cloud_name deveria ter sido configurado");
+		Assert.assertNotNull(cloudinary.getStringConfig("api_key"), "api_key deveria ter sido configurado");
+		Assert.assertNotNull(cloudinary.getStringConfig("api_secret"), "api_secret deveria ter sido configurado");
 	}
 	
 	@Test
@@ -38,4 +44,5 @@ public class CloudinaryServiceTest {
 		Map<String, String> result = cloudinary.uploader().upload("src/test/resources/br/com/camiloporto/tenant/image/homer.jpg", cloudinary.emptyMap());
 		System.out.println(result);
 	}
+	
 }
