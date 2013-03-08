@@ -1,5 +1,6 @@
 <div class="navbar navbar-inverse navbar-fixed-top" id="navbar" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:spring="http://www.springframework.org/tags" version="2.0">
 	<c:url var="searchFormAction" value="/realestates" />
+	<c:url var="home" value="/" />
 		<div class="navbar-inner">
 			<div class="container">
 				<a class="btn btn-navbar" data-toggle="collapse"
@@ -8,14 +9,20 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a> 
-				<a class="brand" href="#" style="margin: 0 1em 0 0">Lorem Ips</a>
+				<a class="brand" href="${home}" style="padding : 0">
+					<img alt="Inquilinis.com" id="logo" 
+						src="http://res.cloudinary.com/inquilinus/image/upload/v1362749559/Logo_1_Original_331x75_qosj3p.png"/>
+				</a>
 				<div class="nav-collapse collapse">
-					 <a href="http://camiloporto.wufoo.com/forms/z7x3p3/" class="btn btn-primary" target="_blank">Cadastre um Novo Imovel</a>
-
-					<form id="searchForm" class="navbar-search pull-right" action="${searchFormAction}" method="get">
-						<input class="search-query" type="text" name="q" id="q" placeholder="Pesquisa..."></input>
-						<button type="submit" class="btn">Procurar</button>
-					</form>
+					<div class="pull-right">
+						 <a style="margin: 0.5em 1em 0em 0;"
+						 	href="http://camiloporto.wufoo.com/forms/z7x3p3/" class="btn btn-primary" target="_blank">Cadastre um Novo Imovel</a>
+	
+						<form id="searchForm" class="navbar-search pull-right" action="${searchFormAction}" method="get">
+							<input class="search-query" type="text" name="q" id="q" placeholder="Pesquisa..."></input>
+							<button type="submit" class="btn">Procurar</button>
+						</form>
+					</div>
 				</div>
 				<!--/.nav-collapse -->
 			</div>
