@@ -23,6 +23,9 @@
 #lnkEnvioFoto {
     font-size : larger;
 }
+#upload {
+	margin : 1em 0;
+}
 #uploadDiv {
     width : 80%;
     background : lightgrey;
@@ -30,6 +33,12 @@
     margin : 1em 0;
     padding : 1em;
     display : none;
+}
+.noPhoto {
+    width : 80%;
+    height: 200px;
+    background : url('http://res.cloudinary.com/inquilinus/image/upload/v1362748860/sem_foto.png') no-repeat center;
+    border : 2px dashed grey;
 }
 </style>
 	<div class="container">
@@ -45,46 +54,51 @@
 		        <div>(47) XXXX</div>
 	         -->
 	    </div>
-		<div id="imovel-media">
-			<div id="myCarousel" class="carousel slide">
-				<!-- Carousel items -->
-				<div class="carousel-inner">
-					 <c:forEach items="${medias}" var="mediaURL">
-					 	<div class="item">
+	    <c:if test="${empty medias}">
+	    	<div class="noPhoto"></div>
+	    </c:if>
+	    <c:if test="${not empty medias}">
+			<div id="imovel-media">
+				<div id="myCarousel" class="carousel slide">
+					<!-- Carousel items -->
+					<div class="carousel-inner">
+						 <c:forEach items="${medias}" var="mediaURL">
+						 	<div class="item">
+								<img
+									src="${mediaURL}"
+									alt=""></img>
+							</div>
+						 </c:forEach>
+						<!-- 
+						<div class="active item">
 							<img
-								src="${mediaURL}"
+								src="http://www.alugarcasa.org/wp-content/uploads/2012/09/Alugar-apartamento-Dicas-Como-proceder.jpg"
 								alt=""></img>
 						</div>
-					 </c:forEach>
-					<!-- 
-					<div class="active item">
-						<img
-							src="http://www.alugarcasa.org/wp-content/uploads/2012/09/Alugar-apartamento-Dicas-Como-proceder.jpg"
-							alt=""></img>
+						<div class="item">
+							<img
+								src="http://construdeia.com/wp-content/gallery/apartamento/apartamento-4.jpg"
+								alt=""></img>
+						</div>
+						<div class="item">
+							<img
+								src="http://static.assimsefaz.com.br/images/3/71/994/207134/2/img.jpg"
+								alt=""></img>
+						</div>
+						 -->
 					</div>
-					<div class="item">
-						<img
-							src="http://construdeia.com/wp-content/gallery/apartamento/apartamento-4.jpg"
-							alt=""></img>
-					</div>
-					<div class="item">
-						<img
-							src="http://static.assimsefaz.com.br/images/3/71/994/207134/2/img.jpg"
-							alt=""></img>
-					</div>
-					 -->
+					<!-- Carousel nav -->
+					<a class="carousel-control left" href="#myCarousel"
+						data-slide="prev">&lsaquo;</a> <a class="carousel-control right"
+						href="#myCarousel" data-slide="next">&rsaquo;</a>
 				</div>
-				<!-- Carousel nav -->
-				<a class="carousel-control left" href="#myCarousel"
-					data-slide="prev">&lsaquo;</a> <a class="carousel-control right"
-					href="#myCarousel" data-slide="next">&rsaquo;</a>
 			</div>
-			<div>
-				<a href="#" id="lnkUploadMedia">Tenho uma foto deste imóvel e gostaria de compartilhar</a>
-				<div id="uploadDiv">
-                	<span>No momento o envio de fotos não está disponível. Você pode nos enviar sua foto através do email <a href="#">camiloporto@gmail.com</a></span>
-            	</div>
-			</div>
+		</c:if>
+		<div id="upload">
+			<a href="#" id="lnkUploadMedia">Tenho uma foto deste imóvel e gostaria de compartilhar</a>
+			<div id="uploadDiv">
+	        	<span>No momento o envio de fotos não está disponível. Você pode nos enviar sua foto através do email <a href="#">camiloporto@gmail.com</a></span>
+	        </div>
 		</div>
 		<div id="imovel-comments">
 			<h3>Comentarios</h3>
