@@ -22,6 +22,7 @@
   </definition>
   
   <definition name="index-imovel" extends="main">
+  	<put-attribute name="header" value="/WEB-INF/views/header-home.jspx" />
   	<put-attribute name="body" value="/WEB-INF/views/index.jsp" />
   </definition>
   

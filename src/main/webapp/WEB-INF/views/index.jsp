@@ -1,13 +1,25 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-	<div class="container">
-		<div class="row">
-	        <div class="span7">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:url var="searchFormAction" value="/realestates" />
+<style>
+	
+</style>
+	<div class="container" style="margin-top : 3em">
+<!-- 		<div class="row"> -->
+<!-- 	        <div class="span12"> -->
 	            <div class="hero-unit">
-	                <h1>Lorem ips</h1>
-	                <p>Proin sed nibh ut tortor vulputate rhoncus dignissim interdum orci, 
-	                eu Aliquam pharetra felis in tellus varius mattis posuere nisl at tellus iaculis</p>
+	                <h1>Inquilinus</h1>
+	                <p>O local ideal para você compartilhar suas experiências relacionadas a moradia, imóveis, condomínios, imobiliárias, contrutoras, etc</p>
+	                <div>
+	                	<div class="span1"></div>
+	                	<form id="searchForm" class="form-search" action="${searchFormAction}" method="get">
+							<input class="search-query span6 input-large" type="text" name="q" id="q" placeholder="Pesquisa..."></input>
+							<button type="submit" class="btn btn-primary btn-large">Procurar</button>
+						</form>
+					</div>
 	            </div>
-	        </div>
+<!-- 	        </div> -->
+	        <!-- 
 	        <div class="span5">
 	            <ul class="thumbnails">
 	                <li>
@@ -21,7 +33,34 @@
 	                </li>
 	            </ul>
 	        </div>
+	         -->
+<!-- 	    </div> -->
+	    <div class="row">
+	    	<div class="span4">
+			        	<h2>Pesquise...</h2>
+			        	<ul>
+				        	<li>O que usuários falam sobre suas experiências em apartamentos, casas e condomínios com que tiveram contato</li>
+				        	<li>Imóveis, Construtoras ou imobiliárias com boas recomendações </li>
+				        	<li>Se o imóvel desejado é bem recomendado pelos usuários</li>
+			        	</ul>
+			        </div>
+	    	<div class="span4">
+			        	<h2>Compartilhe...</h2>
+			        	<p></p>
+			        	<ul>
+				        	<li>Experiência com um apartamento, casa, condomínio</li>
+				        	<li>Avaliação sobre imóveis, imobiliárias, construtoras</li>
+				        	<li>Reclamações e queixas sobre imóveis, imobiliárias e construtoras</li>
+			        	</ul>
+			        </div>
+	    	<div class="span4">
+			        	<h2>Espalhe...</h2>
+			        	<p>Facebook</p>
+			        	<p>Twitter</p>
+			        	<p>Google+</p>
+			    	</div>
 	    </div>
+	    <!-- 
 	    <div class="row">
 	    
 			<ul class="thumbnails">
@@ -91,7 +130,7 @@
 				</li>
 		    </ul>
 		</div>
-		
+		 -->
 </div> <!-- container -->
   	
     
