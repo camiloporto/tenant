@@ -15,12 +15,12 @@
 	                	<form id="searchForm" class="form-search" action="${searchFormAction}" method="get">
 	                		<div class="input-append">
 	                			<input 
-									class="search-query span6" 
+									class="search-query span6" style="height : 34px"
 									type="search" 
 									name="q" id="q"
 									title="Digite o nome de uma cidade, bairro, rua, condomínio, construtora, imobiliária..." 
 									placeholder="Pesquisar"></input>
-								<button type="submit" class="btn btn-primary">Procurar</button>
+								<button type="submit" class="btn btn-primary btn-large">Procurar</button>
 	                		</div>
 						</form>
 					</div>
