@@ -28,17 +28,28 @@
 	    <div class="row">
 	    	<div class="span4">
 				<h2>Pesquise...</h2>
+				<!-- 
+				<p>Imóveis em que você esteja interessado em morar ou reputação de construtoras ou imobiliárias com quem você vai se relacionar</p>
+				<p></p>
+				 -->
 				<ul>
 					<li>O que usuários falam sobre suas experiências em imóveis com que tiveram contato</li>
 					<li>Quais Imóveis, Construtoras ou Imobiliárias possuem boas recomendações</li>
 					<li>Se o imóvel desejado é bem recomendado pelos usuários</li>
-			    	</ul>
+			    </ul>
 			</div>
 	    	<div class="span4">
 				<h2>Compartilhe...</h2>
+				<!-- 
+				<p>
+					<strong>Uma experiência que você viveu com um imóvel, imobiliária ou construtora.</strong>
+					Envie seu feedback sobre um Imóvel que você conheceu ou morou, uma imobiliária ou construtora com que você se relacionou.
+					O Imóvel tinha problemas escondidos? A construtora ou imobiliária lhe atendeu bem? Você recomendaria para outras pessoas?
+				</p>
+				 -->
 				<ul>
-					<li>Experiência com um apartamento, casa, condomínio</li>
-					<li>Avaliação sobre imóveis, imobiliárias, construtoras</li>
+					<li>Uma experiência que você passou com um imóvel, imobiliária ou construtora</li>
+					<li>Sua Avaliação sobre imóveis, imobiliárias, construtoras</li>
 					<li>Reclamações e queixas sobre imóveis, imobiliárias e construtoras</li>
 			    </ul>
 			    <a href="http://camiloporto.wufoo.com/forms/z7x3p3/" class="btn" target="_blank">Compartilhe Agora!</a>
