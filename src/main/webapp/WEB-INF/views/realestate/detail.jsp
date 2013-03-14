@@ -39,26 +39,47 @@
     height: 200px;
     background : url('http://res.cloudinary.com/inquilinus/image/upload/v1362748860/sem_foto.png') no-repeat center;
     border : 2px dashed grey;
+    margin: 0 auto;
+}
+.capitalize {
+	text-transform: capitalize;
+}
+.uppercase {
+	text-transform: uppercase;
+}
+.row {
+	margin : 1em auto;
+}
+#imovel-info h4 {
+	margin : 0.5em 0;
 }
 </style>
-	<div class="container">
-		<div id="imovel-info">
-			<h3>${imovel.tipo}</h3>
-			<h4 class="imovel-local">${imovel.bairro}, ${imovel.cidade}-${imovel.estado}</h4>
-			<span class="imovel-condominio">${imovel.rua}</span><br />
+	<div class="container" style="margin-top : 2em;">
+		<div class="row">
+		<div id="imovel-info" class="span12">
+			<h3 class="capitalize">${imovel.tipo}</h3>
+			<h4 class="imovel-local">
+				<span class="capitalize">${imovel.bairro}</span>, 
+				<span class="capitalize">${imovel.cidade}</span>-<span class="uppercase">${imovel.estado}</span>
+			</h4>
+			<span>${imovel.rua}, ${imovel.complemento}</span><br />
+			<!-- 
 			<span class="avaliacao-qtde"><small>(47)</small></span> 
 			<img src="/Tenant/images/thumbup.gif" class="thumbup"></img>
+			 -->
 			<!-- 
 		        <div>Apartamento em Lagoa Nova, Natal-RN</div>
 		        <div>Residencial LifeStyle</div>
 		        <div>(47) XXXX</div>
 	         -->
 	    </div>
+	    </div>
+	    <div class="row" style="border-bottom: solid 1px lightgray; border-top: solid 1px lightgray">
 	    <c:if test="${empty medias}">
-	    	<div class="noPhoto"></div>
+	    	<div class="noPhoto span12"></div>
 	    </c:if>
 	    <c:if test="${not empty medias}">
-			<div id="imovel-media">
+			<div id="imovel-media" class="span12">
 				<div id="myCarousel" class="carousel slide">
 					<!-- Carousel items -->
 					<div class="carousel-inner">
@@ -69,23 +90,6 @@
 									alt=""></img>
 							</div>
 						 </c:forEach>
-						<!-- 
-						<div class="active item">
-							<img
-								src="http://www.alugarcasa.org/wp-content/uploads/2012/09/Alugar-apartamento-Dicas-Como-proceder.jpg"
-								alt=""></img>
-						</div>
-						<div class="item">
-							<img
-								src="http://construdeia.com/wp-content/gallery/apartamento/apartamento-4.jpg"
-								alt=""></img>
-						</div>
-						<div class="item">
-							<img
-								src="http://static.assimsefaz.com.br/images/3/71/994/207134/2/img.jpg"
-								alt=""></img>
-						</div>
-						 -->
 					</div>
 					<!-- Carousel nav -->
 					<a class="carousel-control left" href="#myCarousel"
@@ -94,24 +98,26 @@
 				</div>
 			</div>
 		</c:if>
-		<div id="upload">
+		</div> <!-- end row -->
+		
+		<div id="upload" class="row">
 			<a href="#" id="lnkUploadMedia">Tenho uma foto deste imóvel e gostaria de compartilhar</a>
 			<div id="uploadDiv">
 	        	<span>No momento o envio de fotos não está disponível. Você pode nos enviar sua foto através do email <a href="#">camiloporto@gmail.com</a></span>
 	        </div>
 		</div>
-		<div id="imovel-comments">
+		<div id="imovel-comments" class="container">
 			<h3>Comentarios</h3>
-			<div id="commentarioFormDiv">
+			<div id="commentarioFormDiv" class="row">
 				<c:url var="commentFormAction" value="/realestates/comment" />
 				<form action="${commentFormAction}" method="POST" id="commentForm">
 					<label for="comment">Envie seu comentário sobre este imóvel</label>
-					<textarea cols="20" rows="5" name="comment" id="comment" style="display: block;"></textarea>
+					<textarea cols="20" rows="8" name="comment" id="comment" style="display: block;" class="span12"></textarea>
 					<input type="hidden" value="${imovel.id}" name="imovelId">
-					<input type="submit" value="Enviar" />
+					<input type="submit" value="Enviar" class="btn btn-primary" />
 				</form>
 			</div>
-			<div class="media">
+			<div class="media" class="row">
 				<a class="pull-left"> <img
 					src="http://2.gravatar.com/avatar/22bd03ace6f176bfe0c593650bcf45d8?s=48&d=&r=G"></img>
 				</a>
@@ -124,7 +130,7 @@
 						adipiscing nibh sit amet cursus.</p>
 				</div>
 			</div>
-			<div class="media">
+			<div class="media" class="row">
 				<a class="pull-left"> <img
 					src="https://lh5.googleusercontent.com/-govT1DrCf6E/AAAAAAAAAAI/AAAAAAAAAAA/BPlkNKv4v2o/s48-c-k/photo.jpg"></img>
 				</a>
@@ -137,7 +143,7 @@
 						urna.</p>
 				</div>
 			</div>
-			<div class="media">
+			<div class="media" class="row">
 				<a class="pull-left"> <img
 					src="http://gospelmais.com.br/wp-content/uploads/avatars/44893/4ef460c284ea678dfcd9a47eb7b7a254-bpthumb.jpg"></img>
 				</a>
