@@ -9,7 +9,7 @@
 <!-- 	        <div class="span12"> -->
 	            <div class="hero-unit">
 	                <h1>Inquilinus</h1>
-	                <p>O local ideal para você compartilhar suas experiências relacionadas a moradia, imóveis, condomínios, imobiliárias, contrutoras, etc</p>
+	                <p>O local ideal para você compartilhar suas experiências relacionadas a moradia, imóveis, condomínios, imobiliárias, construtoras, etc</p>
 	                <div>
 	                	<div class="span1"></div>
 	                	<form id="searchForm" class="form-search" action="${searchFormAction}" method="get">
