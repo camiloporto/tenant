@@ -47,7 +47,7 @@
 					<li>O Imóvel tinha <strong>problemas escondidos?</strong> A construtora ou imobiliária lhe atendeu bem? Você recomendaria para outras pessoas?</li>
 				</ul>
 				 -->
-			    <a href="http://camiloporto.wufoo.com/forms/z7x3p3/" class="btn" target="_blank">Compartilhe Agora!</a>
+			    <a href="http://inquilinus.wufoo.com/forms/z7x3p3/" class="btn" target="_blank">Compartilhe Agora!</a>
 			</div>
 	    	<div class="span4">
 				<h2>Espalhe...</h2>

@@ -10,6 +10,12 @@ body {
 .imovel-local {
 	margin: 0;
 }
+.capitalize {
+	text-transform: capitalize;
+}
+.uppercase {
+	text-transform: uppercase;
+}
 </style>
 	<div class="container" id="divListaImoveis" style="margin-top : 3em;">
 		<c:forEach items="${imoveis}" var="imovel">
@@ -20,9 +26,12 @@ body {
 						src="http://res.cloudinary.com/inquilinus/image/upload/c_scale,h_96/v1362748860/sem_foto.png"></img>
 				</a>
 				<div class="media-body">
-					<h3 class="media-heading">${imovel.tipo}</h3>
-					<h4 class="imovel-local">${imovel.bairro}, ${imovel.cidade}-${imovel.estado}</h4>
-					<span class="imovel-condominio">${imovel.rua}, ${imovel.complemento}</span><br />
+					<h3 class="media-heading capitalize">${imovel.tipo}</h3>
+					<h4 class="imovel-local">
+						<span class="capitalize">${imovel.bairro}</span>, 
+						<span class="capitalize">${imovel.cidade}</span>-<span class="uppercase">${imovel.estado}</span>
+					</h4>
+					<span class="imovel-condominio capitalize">${imovel.rua}, ${imovel.complemento}</span><br />
 					<!-- 
 					<span class="avaliacao-qtde"><small>(47)</small></span> <span
 						class="avaliacao">XXXXX</span><br />

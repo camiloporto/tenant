@@ -105,7 +105,7 @@
 		<div id="upload" class="row">
 			<a href="#" id="lnkUploadMedia">Tenho uma foto deste imóvel e gostaria de compartilhar</a>
 			<div id="uploadDiv">
-	        	<span>No momento o envio de fotos não está disponível. Você pode nos enviar sua foto através do email <a href="#">camiloporto@gmail.com</a></span>
+	        	<span>No momento o envio de fotos não está disponível. Estamos trabalhando para corrigir o problema.</span>
 	        </div>
 		</div>
 		<div id="imovel-comments" class="container">
