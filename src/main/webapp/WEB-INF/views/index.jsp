@@ -12,7 +12,7 @@
 	                <p>O local ideal para você compartilhar suas experiências relacionadas a moradia, imóveis, condomínios, imobiliárias, construtoras, etc</p>
 	                <div>
 	                	<div class="span1"></div>
-	                	<form id="searchForm" class="form-search" action="${searchFormAction}" method="get">
+	                	<form id="searchForm" class="form-search" action="${searchFormAction}" method="get" style="margin: 4em 0 1em;">
 	                		<div class="input-append">
 	                			<input 
 									class="search-query span6" style="height : 34px"
