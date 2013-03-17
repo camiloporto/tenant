@@ -3,3 +3,6 @@
 *.settings
 *.classpath
 target/**
+test-output/**
+*.springBeans
+data

@@ -12,9 +12,15 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <roo.version>1.2.2.RELEASE</roo.version>
         <slf4j.version>1.6.4</slf4j.version>
-        <spring.version>3.1.1.RELEASE</spring.version>
+        <spring.version>3.2.0.RELEASE</spring.version>
     </properties>
     <repositories>
+    	<!-- Repositorio do Jest - REST Client do ElasticSearch -->
+    	<repository>
+		   <id>sonatype</id>
+		   <name>Sonatype Groups</name>
+		   <url>https://oss.sonatype.org/content/groups/public/</url>
+		</repository>
         <repository>
             <id>spring-maven-release</id>
             <name>Spring Maven Release Repository</name>
@@ -49,6 +55,66 @@
         </pluginRepository>
     </pluginRepositories>
     <dependencies>
+    	<!-- Cloudinary -->
+    	<dependency>
+		  <groupId>com.cloudinary</groupId>
+		  <artifactId>cloudinary-java</artifactId>
+		  <version>0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		            
+    	<!-- End  -->
+    	<!-- Search Engine Dependency -->
+    	<dependency>
+		  <groupId>io.searchbox</groupId>
+		  <artifactId>jest</artifactId>
+		  <version>0.0.3</version>
+		</dependency>
+    	<dependency>
+		  <groupId>org.elasticsearch</groupId>
+		  <artifactId>elasticsearch</artifactId>
+		  <version>0.20.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+			<version>0.8.1</version>
+		</dependency>
+		<!-- 
+    	<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path-parent</artifactId>
+			<version>0.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		 -->
+    	<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.12</version>
+		</dependency>
+    	<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>6.1.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+	        <groupId>org.seleniumhq.selenium</groupId>
+	        <artifactId>selenium-java</artifactId>
+	        <version>2.28.0</version>
+	        <scope>test</scope>
+	    </dependency>
+	    <dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.1-901.jdbc4</version>
+		</dependency>
+            
         <!-- General dependencies for standard applications -->
         <dependency>
             <groupId>junit</groupId>
@@ -449,6 +515,27 @@
                     </webAppConfig>
                 </configuration>
             </plugin>
+            <plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-dependency-plugin</artifactId>
+			    <version>2.3</version>
+			    <executions>
+			        <execution>
+			            <phase>package</phase>
+			            <goals><goal>copy</goal></goals>
+			            <configuration>
+			                <artifactItems>
+			                    <artifactItem>
+			                        <groupId>org.mortbay.jetty</groupId>
+			                        <artifactId>jetty-runner</artifactId>
+			                        <version>7.4.5.v20110725</version>
+			                        <destFileName>jetty-runner.jar</destFileName>
+			                    </artifactItem>
+			                </artifactItems>
+			            </configuration>
+			        </execution>
+			    </executions>
+			</plugin>
         </plugins>
     </build>
 </project>

@@ -1,0 +1,15 @@
+{
+	"media":{
+		"_parent" : {
+			"type" : "imovel"
+		},
+		"_routing" : {
+			"required" : true,
+			"path" : "imovelId"
+		},
+		"properties":{
+			"fileExtension":{"type":"string"},
+			"fileName":{"type":"string"}
+		}
+	}
+}

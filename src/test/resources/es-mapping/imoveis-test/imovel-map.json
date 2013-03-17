@@ -1,0 +1,7 @@
+{
+	"imovel-map" : {
+        "properties" : {
+        	"ultimaAtualizacao" : { "type" : "date"}
+        }
+    }
+}

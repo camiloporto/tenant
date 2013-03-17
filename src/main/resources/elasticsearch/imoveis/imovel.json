@@ -1,0 +1,15 @@
+{
+	"imovel":{
+		"properties":{
+			"bairro":{"type":"string"},
+			"cidade":{"type":"string"},
+			"complemento":{"type":"string"},
+			"estado":{"type":"string"},
+			"id":{"type":"long"},
+			"rua":{"type":"string"},
+			"tipo":{"type":"string"},
+			"ultimaAtualizacao":{"type":"date","format":"dateOptionalTime"},
+			"version":{"type":"long"}
+		}
+	}
+}

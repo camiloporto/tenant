@@ -40,3 +40,94 @@ help
 web mvc scaffold --backingType ~.model.Usuario --class ~.web.UserController 
 exit
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-12-13 14:51:40
+// Spring Roo 1.2.0.RELEASE [rev 39eb957] log opened at 2012-12-17 11:30:40
+exit
+// Spring Roo 1.2.0.RELEASE [rev 39eb957] log closed at 2012-12-17 12:58:40
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-25 17:10:07
+entity jpa --class ~.model.Imovel --activeRecord false --serializable
+field string --fieldName estado --notNull
+field string --fieldName cidade --notNull
+field string --fieldName tipo --notNull
+field string --fieldName bairro --notNull
+field string --fieldName rua
+field string --fieldName complemento
+repository jpa --interface ~.repository.ImovelRepository --entity ~.model.Imovel
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-25 17:18:40
+// Spring Roo 1.2.0.RELEASE [rev 39eb957] log opened at 2013-01-26 18:10:07
+exit
+// Spring Roo 1.2.0.RELEASE [rev 39eb957] log closed at 2013-01-26 18:11:29
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-26 18:36:32
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-27 14:20:09
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-27 16:58:27
+field date --class ~.model.Imovel --fieldName ultimaAtualizacao --type java.util.Date
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-28 16:40:43
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-28 16:45:40
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-28 16:47:15
+help
+help service
+service --interface ~.service.ImovelService --entity ~.model.Imovel --class ~.servImovelServiceImpl
+service --interface ~.service.ImovelService --entity ~.model.Imovel --class ~.ice.ImovelServiceImpl
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-28 16:59:54
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-29 12:05:55
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-29 14:13:00
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-29 14:23:48
+// Spring Roo 1.2.0.RELEASE [rev 39eb957] log opened at 2013-01-31 08:20:55
+// Spring Roo 1.2.0.RELEASE [rev 39eb957] log opened at 2013-02-05 14:33:58
+exit
+// Spring Roo 1.2.0.RELEASE [rev 39eb957] log closed at 2013-02-05 15:07:05
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-08 10:48:56
+help
+json add --class ~.model.Imovel
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-08 10:55:10
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-22 13:38:10
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-22 14:15:04
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-22 14:38:37
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-22 14:41:43
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-22 14:42:41
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-22 14:42:52
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-23 19:06:27
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-23 19:06:51
+// Spring Roo 1.2.0.RELEASE [rev 39eb957] log opened at 2013-02-25 16:09:26
+exit
+// Spring Roo 1.2.0.RELEASE [rev 39eb957] log closed at 2013-02-25 16:09:35
+// Spring Roo 1.2.0.RELEASE [rev 39eb957] log opened at 2013-02-25 17:09:54
+exit
+// Spring Roo 1.2.0.RELEASE [rev 39eb957] log closed at 2013-02-25 17:10:51
+// Spring Roo 1.2.0.RELEASE [rev 39eb957] log opened at 2013-02-26 13:54:00
+// Spring Roo 1.2.0.RELEASE [rev 39eb957] log closed at 2013-02-26 13:56:08
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-27 11:04:58
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-27 15:13:19
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-28 10:24:07
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-28 10:26:49
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-28 10:32:46
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-28 10:40:07
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-03-01 16:32:25
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-03-01 17:18:42
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-03-04 16:28:36
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-03-04 17:33:11
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-03-08 13:55:13
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-03-08 13:55:38
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-03-08 13:56:45
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-03-08 13:57:16
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-03-08 14:34:48
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-03-08 14:35:06
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-03-08 14:43:34
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-03-08 14:43:58

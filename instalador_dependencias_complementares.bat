@@ -1,0 +1,1 @@
+mvn install:install-file -DgroupId=com.cloudinary -DartifactId=cloudinary-java -Dversion=0.1 -Dpackaging=jar -Dfile=lib/cloudinary_java-0.1-SNAPSHOT.jar
