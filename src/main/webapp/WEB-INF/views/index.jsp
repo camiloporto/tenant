@@ -20,7 +20,10 @@
 									name="q" id="q"
 									title="Digite o nome de uma cidade, bairro, rua, condomínio, construtora, imobiliária..." 
 									placeholder="Pesquisar"></input>
-								<button type="submit" class="btn btn-primary btn-large">Procurar</button>
+								<button 
+									type="submit"
+									onclick="_gaq.push(['_trackEvent', 'LinksAndButtons', 'Click', 'HomeSearchButton']);" 
+									class="btn btn-primary btn-large">Procurar</button>
 	                		</div>
 						</form>
 					</div>
@@ -47,7 +50,8 @@
 					<li>O Imóvel tinha <strong>problemas escondidos?</strong> A construtora ou imobiliária lhe atendeu bem? Você recomendaria para outras pessoas?</li>
 				</ul>
 				 -->
-			    <a href="http://inquilinus.wufoo.com/forms/z7x3p3/" class="btn" target="_blank">Compartilhe Agora!</a>
+			    <a onclick="_gaq.push(['_trackEvent', 'LinksAndButtons', 'Click', 'HomeNewImovelButton']);"
+			    	href="http://inquilinus.wufoo.com/forms/z7x3p3/" class="btn" target="_blank">Compartilhe Agora!</a>
 			</div>
 	    	<div class="span4">
 				<h2>Espalhe...</h2>
