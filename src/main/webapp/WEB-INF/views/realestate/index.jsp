@@ -18,6 +18,18 @@ body {
 }
 </style>
 	<div class="container" id="divListaImoveis" style="margin-top : 3em;">
+		<c:if test="${empty imoveis}">
+			<div class="hero-unit">
+			    <h3>Hora de compartilhar...</h3>
+			    <p>Não encontramos items relacionado a sua pesquisa.</p>
+			    <p>Por que você não cadastra o que está procurando (Imóvel, Construtora ou Imobiliária) 
+			    	para que outros usuários enviem suas experiências e comentários sobre o seu item? </p>
+			    <p><strong>O Cadastro é Gratuito e leva menos de 1 minuto!</strong></p>
+			    <p>
+			        <a href="http://inquilinus.wufoo.com/forms/z7x3p3/" class="btn btn-primary btn-large">Quero Cadastrar »</a>
+			    </p>
+			</div>
+		</c:if>
 		<c:forEach items="${imoveis}" var="imovel">
 			<div class="media well">
 				<a class="pull-left" href="${realEstateHome}/${imovel.id}"> 
