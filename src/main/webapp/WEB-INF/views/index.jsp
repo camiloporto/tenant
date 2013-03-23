@@ -11,7 +11,6 @@
 	                <h1>Inquilinus</h1>
 	                <p>O local ideal para você compartilhar suas experiências relacionadas a moradia, imóveis, condomínios, imobiliárias, construtoras, etc</p>
 	                <div>
-	                	<div class="span1"></div>
 	                	<form id="searchForm" class="form-search" action="${searchFormAction}" method="get" style="margin: 4em 0 1em;">
 	                		<div class="input-append">
 	                			<input 
@@ -25,6 +24,9 @@
 									onclick="_gaq.push(['_trackEvent', 'LinksAndButtons', 'Click', 'HomeSearchButton']);" 
 									class="btn btn-primary btn-large">Procurar</button>
 	                		</div>
+	                		<div class="help-block">
+								<small>Procure por: Estado, Cidade, Imobiliárias, Construtoras, tipo de imóveis (apartamento, casa), condomínios...</small> 
+							</div>
 						</form>
 					</div>
 	            </div>
