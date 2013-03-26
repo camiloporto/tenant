@@ -4,6 +4,77 @@
 	<footer class="footer" style="margin : 2em 0; padding : 2em 0; border-top : solid 1px lightgray;">Inquilinus.com © 2013</footer>
 </div>
 
+<!-- Modal com Formulario de Novo Cadastro -->
+<div id="newImovelDiv" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form id="newImovelForm" class="form-horizontal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Novo Cadastro</h3>
+        <small>Preencha as informações abaixo sobre o novo item (Imóvel, Construtora, Imobiliária) que deseja cadastrar</small>
+    </div>
+    <div class="modal-body">
+        <div class="control-group">
+            <label class="control-label" for="categoria">Categoria</label>
+            <div class="controls">
+                <select id="categoria">
+                    <option value="Selecione aqui" selected="selected">Selecione aqui</option>
+                    <option value="Apartamento">Apartamento</option>
+                    <option value="Casa">Casa</option>
+                    <option value="Condomínio">Condomínio</option>
+                    <option value="Imobiliária">Imobiliária</option>
+                    <option value="Construtora">Construtora</option>
+                    <option value="Outros">Outros</option>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="estado">Estado</label>
+            <div class="controls">
+                <select id="estado">
+                    <option value="">Selecione o Estado</option>
+                    <option value="rn">RN</option>
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="cidade">Cidade</label>
+            <div class="controls">
+                <input type="text" id="cidade" placeholder="Informe a cidade"></input>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="bairro">Bairro</label>
+            <div class="controls">
+                <input type="text" id="bairro" placeholder="Informe o Bairro" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="rua">Rua</label>
+            <div class="controls">
+                <input type="text" id="rua" placeholder="Informe a Rua"></input>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="complemento">Complemento</label>
+            <div class="controls">
+                <input type="text" id="complemento"></input>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="complemento">Comentários</label>
+            <div class="controls">
+                <textarea rows="4" type="text" id="comentario"></textarea> <span class="help-block">Escreva aqui seu comentário ou dúvida sobre o item que está cadastrando</span>
+
+            </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+    </form>
+</div> <!-- Fim Modal -->
+
 <c:url var="jsBootstrapMin" value="/js/bootstrap.min.js"></c:url>
 
 <script src="http://code.jquery.com/jquery-latest.js" ></script>
