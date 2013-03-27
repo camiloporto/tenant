@@ -35,20 +35,9 @@
 	    	<div class="span4">
 				<h2>Compartilhe...</h2>
 				<p>Seu conhecimento sobre imóveis, construtoras, imobiliárias. Teve problemas com algum? Gostaria de recomendar algum?</p>
-<<<<<<< HEAD
-				<!-- 
-				<ul>
-					<li><strong>Uma experiência que você viveu com um imóvel</strong>, imobiliária ou construtora.</li>
-					<li>Dê seu <strong>feedback</strong> sobre um imóvel que você conheceu ou morou, uma <strong>imobiliária ou construtora</strong> com que você se relacionou</li>
-					<li>O Imóvel tinha <strong>problemas escondidos?</strong> A construtora ou imobiliária lhe atendeu bem? Você recomendaria para outras pessoas?</li>
-				</ul>
-				 -->
-			    <a onclick="_gaq.push(['_trackEvent', 'LinksAndButtons', 'Click', 'HomeNewImovelButton']);"
-			    	href="http://inquilinus.wufoo.com/forms/z7x3p3/" class="btn" target="_blank">Compartilhe Agora!</a>
-=======
+
 			    <a onclick="_gaq.push(['_trackEvent', 'LinksAndButtons', 'Click', 'HomeNewImovelButton']);"
 			    	href="#newImovelDiv" class="btn" data-toggle="modal" role="button">Compartilhe Agora!</a>
->>>>>>> origin/dev
 			</div>
 	    	<div class="span4">
 				<h2>Espalhe...</h2>

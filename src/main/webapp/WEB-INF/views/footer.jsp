@@ -16,6 +16,8 @@
         <div class="control-group">
             <label class="control-label" for="tipo">Categoria</label>
             <div class="controls">
+            	<input type="text" id="tipo" name="tipo" placeholder="Informe a categoria"></input>
+            <!-- 
                 <select id="tipo" name="tipo">
                     <option value="Selecione aqui" selected="selected">Selecione aqui</option>
                     <option value="Apartamento">Apartamento</option>
@@ -25,15 +27,19 @@
                     <option value="Construtora">Construtora</option>
                     <option value="Outros">Outros</option>
                 </select>
+                 -->
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="estado">Estado</label>
             <div class="controls">
+            	<input type="text" id="estado" name="estado" placeholder="Informe o Estado"></input>
+            <!--  
                 <select id="estado" name="estado">
                     <option value="">Selecione o Estado</option>
                     <option value="rn">RN</option>
                 </select>
+                -->
             </div>
         </div>
         <div class="control-group">
