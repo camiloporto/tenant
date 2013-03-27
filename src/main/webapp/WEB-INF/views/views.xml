@@ -28,6 +28,7 @@
   
   <definition name="realestate/index" extends="main">
   	<put-attribute name="body" value="/WEB-INF/views/realestate/index.jsp" />
+  	<put-attribute name="customJS" value="/WEB-INF/views/realestate/index-js.jsp" />
   </definition>
   
   <definition name="realestate/detail" extends="main">

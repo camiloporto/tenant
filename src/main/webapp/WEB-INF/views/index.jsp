@@ -5,8 +5,6 @@
 	
 </style>
 	<div class="container" style="margin-top : 3em">
-<!-- 		<div class="row"> -->
-<!-- 	        <div class="span12"> -->
 	            <div class="hero-unit">
 	                <h1>Inquilinus</h1>
 	                <p>O local ideal para você compartilhar suas experiências relacionadas a moradia, imóveis, condomínios, imobiliárias, construtoras, etc</p>
@@ -19,7 +17,9 @@
 									name="q" id="q"
 									title="Digite o nome de uma cidade, bairro, rua, condomínio, construtora, imobiliária..." 
 									placeholder="Pesquisar"></input>
-								<button type="submit" class="btn btn-primary btn-large">Procurar</button>
+								<button
+									onclick="_gaq.push(['_trackEvent', 'LinksAndButtons', 'Click', 'HomeSearchButton']);" 
+									type="submit" class="btn btn-primary btn-large">Procurar</button>
 	                		</div>
 	                		<div class="help-block">
 								<small>Procure por: Estado, Cidade, Imobiliárias, Construtoras, tipo de imóveis (apartamento, casa), condomínios...</small> 
@@ -31,25 +31,12 @@
 	    	<div class="span4">
 				<h2>Pesquise...</h2>
 				<p>Imóveis, construtoras ou imobiliárias de seu interesse. Veja o que os usuários, moradores e clientes falam sobre eles</p>
-				<!-- 
-				<ul style="text-align: justify;">
-					<li><strong>O que usuários falam sobre suas experiências em imóveis</strong> com que tiveram contato</li>
-					<li>Quais imóveis, construtoras ou imobiliárias possuem <strong>boas recomendações</strong></li>
-					<li>Se aquele <strong>imóvel desejado é bem recomendado</strong> pelos usuários</li>
-			    </ul>
-			     -->
 			</div>
 	    	<div class="span4">
 				<h2>Compartilhe...</h2>
 				<p>Seu conhecimento sobre imóveis, construtoras, imobiliárias. Teve problemas com algum? Gostaria de recomendar algum?</p>
-				<!-- 
-				<ul>
-					<li><strong>Uma experiência que você viveu com um imóvel</strong>, imobiliária ou construtora.</li>
-					<li>Dê seu <strong>feedback</strong> sobre um imóvel que você conheceu ou morou, uma <strong>imobiliária ou construtora</strong> com que você se relacionou</li>
-					<li>O Imóvel tinha <strong>problemas escondidos?</strong> A construtora ou imobiliária lhe atendeu bem? Você recomendaria para outras pessoas?</li>
-				</ul>
-				 -->
-			    <a href="http://inquilinus.wufoo.com/forms/z7x3p3/" class="btn" target="_blank">Compartilhe Agora!</a>
+			    <a onclick="_gaq.push(['_trackEvent', 'LinksAndButtons', 'Click', 'HomeNewImovelButton']);"
+			    	href="#newImovelDiv" class="btn" data-toggle="modal" role="button">Compartilhe Agora!</a>
 			</div>
 	    	<div class="span4">
 				<h2>Espalhe...</h2>
