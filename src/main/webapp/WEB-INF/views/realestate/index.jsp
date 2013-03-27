@@ -26,7 +26,7 @@ body {
 			    	para que outros usuários enviem suas experiências e comentários sobre o seu item? </p>
 			    <p><strong>O Cadastro é Gratuito e leva menos de 1 minuto!</strong></p>
 			    <p>
-			        <a href="http://inquilinus.wufoo.com/forms/z7x3p3/" class="btn btn-primary btn-large">Quero Cadastrar »</a>
+			        <a href="#newImovelDiv" data-toggle="modal" role="button" class="btn btn-primary btn-large">Quero Cadastrar »</a>
 			    </p>
 			</div>
 		</c:if>
