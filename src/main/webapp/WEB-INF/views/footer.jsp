@@ -14,9 +14,9 @@
     </div>
     <div class="modal-body">
         <div class="control-group">
-            <label class="control-label" for="categoria">Categoria</label>
+            <label class="control-label" for="tipo">Categoria</label>
             <div class="controls">
-                <select id="categoria">
+                <select id="tipo" name="tipo">
                     <option value="Selecione aqui" selected="selected">Selecione aqui</option>
                     <option value="Apartamento">Apartamento</option>
                     <option value="Casa">Casa</option>
@@ -30,7 +30,7 @@
         <div class="control-group">
             <label class="control-label" for="estado">Estado</label>
             <div class="controls">
-                <select id="estado">
+                <select id="estado" name="estado">
                     <option value="">Selecione o Estado</option>
                     <option value="rn">RN</option>
                 </select>
@@ -39,31 +39,31 @@
         <div class="control-group">
             <label class="control-label" for="cidade">Cidade</label>
             <div class="controls">
-                <input type="text" id="cidade" placeholder="Informe a cidade"></input>
+                <input type="text" id="cidade" name="cidade" placeholder="Informe a cidade"></input>
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="bairro">Bairro</label>
             <div class="controls">
-                <input type="text" id="bairro" placeholder="Informe o Bairro" />
+                <input type="text" id="bairro" name="bairro" placeholder="Informe o Bairro" />
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="rua">Rua</label>
             <div class="controls">
-                <input type="text" id="rua" placeholder="Informe a Rua"></input>
+                <input type="text" id="rua" name="rua" placeholder="Informe a Rua"></input>
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="complemento">Complemento</label>
             <div class="controls">
-                <input type="text" id="complemento"></input>
+                <input type="text" id="complemento" name="complemento"></input>
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="complemento">Comentários</label>
+            <label class="control-label" for="comentario">Comentários</label>
             <div class="controls">
-                <textarea rows="4" type="text" id="comentario"></textarea> <span class="help-block">Escreva aqui seu comentário ou dúvida sobre o item que está cadastrando</span>
+                <textarea rows="4" type="text" id="comentario" name="comentario"></textarea> <span class="help-block">Escreva aqui seu comentário ou dúvida sobre o item que está cadastrando</span>
 
             </div>
         </div>
@@ -76,6 +76,30 @@
 </div> <!-- Fim Modal -->
 
 <c:url var="jsBootstrapMin" value="/js/bootstrap.min.js"></c:url>
+<c:url var="newUserUrl" value="/realestates"></c:url>
 
 <script src="http://code.jquery.com/jquery-latest.js" ></script>
 <script src="${jsBootstrapMin}" ></script>
+<script type="text/javascript">
+	$('#newImovelForm').submit(function() {
+		var formData = $(this).serialize();
+		$.ajax(
+		{
+			type : 'POST',
+			url : '${newUserUrl}',
+			data : formData,
+			success : 
+				function(data){
+					console.log(data);
+					var ok = data.status == 'ok';
+					if(ok) {
+						$('#newImovelDiv').modal('hide');
+					}
+				},
+			error : function(xhr, desc, err) {
+				alert(err);
+			}
+		});
+		return false;
+	});
+</script>
