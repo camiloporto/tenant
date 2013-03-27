@@ -17,7 +17,9 @@
 									name="q" id="q"
 									title="Digite o nome de uma cidade, bairro, rua, condomínio, construtora, imobiliária..." 
 									placeholder="Pesquisar"></input>
-								<button type="submit" class="btn btn-primary btn-large">Procurar</button>
+								<button
+									onclick="_gaq.push(['_trackEvent', 'LinksAndButtons', 'Click', 'HomeSearchButton']);" 
+									type="submit" class="btn btn-primary btn-large">Procurar</button>
 	                		</div>
 	                		<div class="help-block">
 								<small>Procure por: Estado, Cidade, Imobiliárias, Construtoras, tipo de imóveis (apartamento, casa), condomínios...</small> 
@@ -33,7 +35,8 @@
 	    	<div class="span4">
 				<h2>Compartilhe...</h2>
 				<p>Seu conhecimento sobre imóveis, construtoras, imobiliárias. Teve problemas com algum? Gostaria de recomendar algum?</p>
-			    <a href="#newImovelDiv" class="btn" data-toggle="modal" role="button">Compartilhe Agora!</a>
+			    <a onclick="_gaq.push(['_trackEvent', 'LinksAndButtons', 'Click', 'HomeNewImovelButton']);"
+			    	href="#newImovelDiv" class="btn" data-toggle="modal" role="button">Compartilhe Agora!</a>
 			</div>
 	    	<div class="span4">
 				<h2>Espalhe...</h2>
