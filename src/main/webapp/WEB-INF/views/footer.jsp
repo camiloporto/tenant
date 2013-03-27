@@ -70,7 +70,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button id="saveBtn" type="submit" class="btn btn-primary" data-loading-text="Salvando...">Salvar</button>
         </div>
     </form>
 </div> <!-- Fim Modal -->
@@ -82,6 +82,9 @@
 <script src="${jsBootstrapMin}" ></script>
 <script type="text/javascript">
 	$('#newImovelForm').submit(function() {
+		_gaq.push(['_trackEvent', 'LinksAndButtons', 'Click', 'NewImovelSubmitted']);
+		var btn = $('#saveBtn', this);
+		btn.button('loading');
 		var formData = $(this).serialize();
 		$.ajax(
 		{
@@ -90,16 +93,25 @@
 			data : formData,
 			success : 
 				function(data){
-					console.log(data);
 					var ok = data.status == 'ok';
 					if(ok) {
 						$('#newImovelDiv').modal('hide');
+						document.location.href = '${newUserUrl}/' + data.id;
+					} else {
+						btn.button('reset');
+						//Enviar mensagens de erro na tela
+						alert("Erro ao enviar seu pedido de cadastro");
 					}
 				},
 			error : function(xhr, desc, err) {
-				alert(err);
+				btn.button('reset');
+				console.log(xhr);
+				console.log(desc);
+				console.log(err);
+				alert("Erro ao enviar seu pedido de cadastro");
 			}
 		});
+		
 		return false;
 	});
 </script>
