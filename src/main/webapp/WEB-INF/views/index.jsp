@@ -35,6 +35,7 @@
 	    	<div class="span4">
 				<h2>Compartilhe...</h2>
 				<p>Seu conhecimento sobre imóveis, construtoras, imobiliárias. Teve problemas com algum? Gostaria de recomendar algum?</p>
+
 			    <a onclick="_gaq.push(['_trackEvent', 'LinksAndButtons', 'Click', 'HomeNewImovelButton']);"
 			    	href="#newImovelDiv" class="btn" data-toggle="modal" role="button">Compartilhe Agora!</a>
 			</div>

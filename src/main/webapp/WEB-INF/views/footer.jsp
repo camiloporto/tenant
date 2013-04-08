@@ -30,10 +30,13 @@
         <div class="control-group">
             <label class="control-label" for="estado">Estado</label>
             <div class="controls">
+            	<input type="text" id="estado" name="estado" placeholder="Informe o Estado"></input>
+            <!--  
                 <select id="estado" name="estado">
                     <option value="">Selecione o Estado</option>
                     <option value="rn">RN</option>
                 </select>
+                -->
             </div>
         </div>
         <div class="control-group">
