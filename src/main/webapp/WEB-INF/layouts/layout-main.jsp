@@ -1,8 +1,8 @@
-<html xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:tiles="http://tiles.apache.org/tags-tiles" xmlns:spring="http://www.springframework.org/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" >
-	<jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
-	
-	<jsp:directive.page contentType="text/html;charset=UTF-8" />  
-	<jsp:directive.page pageEncoding="UTF-8" />
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<!DOCTYPE HTML>
+<html>
 	<c:url var="cssBootstrapMinResponsive" value="/styles/bootstrap-responsive.css" /> 
 	<c:url var="cssBootstrapMin" value="/styles/bootstrap.min.css" />
 <head>
