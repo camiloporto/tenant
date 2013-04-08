@@ -17,8 +17,8 @@
   </definition>
   
   <!-- Layout do inquilinus -->
-  <definition name="main" template="/WEB-INF/layouts/layout-main.jspx">
-  	<put-attribute name="header" value="/WEB-INF/views/header.jspx" />
+  <definition name="main" template="/WEB-INF/layouts/layout-main.jsp">
+  	<put-attribute name="header" value="/WEB-INF/views/header.jsp" />
     <put-attribute name="footer" value="/WEB-INF/views/footer.jsp" />
   </definition>
 

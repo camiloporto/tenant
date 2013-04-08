@@ -1,5 +1,6 @@
-<div class="navbar navbar-inverse navbar-fixed-top" id="navbar" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:spring="http://www.springframework.org/tags" version="2.0">
-	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<div class="navbar navbar-inverse navbar-fixed-top" id="navbar">
 	<c:url var="home" value="/" />
 		<div class="navbar-inner">
 			<div class="container">
